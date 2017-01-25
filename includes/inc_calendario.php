@@ -20,18 +20,28 @@
 
 	if (isset($_GET["opcion"]))
 	{
-		/*require_once($_SESSION["ruta"]."conf/traduccion.php");
-		require_once($_SESSION["ruta"]."conf/funciones.php");*/
+		session_start();
+		require_once($_SESSION["ruta"]."conf/traduccion.php");
+		require_once($_SESSION["ruta"]."conf/funciones.php");
+		require_once($_SESSION["ruta"]."conf/conexion.php");
+		$link=Conectarse();
+		
 		$idcomunidad=0;
 		$idprovincia=0;
 		$idmunicipio=0;
 		$opcion = $_GET["opcion"];
-		
+
 		$opciones=explode("@", $opcion);
-		$idopcion1=$opciones[0]*1;
-		$idopcion2=$opciones[1]*1;
-		$idopcion3=$opciones[2]*1;
 		$totalopciones=count($opciones);
+		
+		$idopcion1=$opciones[0]*1;
+		if ($totalopciones == 2){
+			$idopcion2=$opciones[1]*1;
+		}
+		if ($totalopciones == 3){
+			$idopcion3=$opciones[2]*1;
+		}
+		
 		if ($totalopciones==1){$idcomunidad=$idopcion1;}
 		else if ($totalopciones==2){$idprovincia=$idopcion1;$idcomunidad=$idopcion2;}
 		else if ($totalopciones==3){$idmunicipio=$idopcion1;$idprovincia=$idopcion2;$idcomunidad=$idopcion3;}
@@ -82,8 +92,8 @@
 			mysqli_free_result($q);
 		}
 
-		$q=mysqli_query ($link, $query);
-		$filas=mysqli_num_rows($q);
+		$qencuentros=mysqli_query ($link, $query);
+		$filas=mysqli_num_rows($qencuentros);
 ?>
 	<h1><?= $tipofiesta.$lugar ?></h1>
 <?php 
@@ -96,7 +106,7 @@
 					<th align="center"><?= cambiarAcentos(_DIA) ?></th>
 				</tr>
 <?php 
-				while($encuentros=mysqli_fetch_array($q, MYSQLI_BOTH))
+				while($encuentros=mysqli_fetch_array($qencuentros, MYSQLI_BOTH))
 				{
 					$query="select * from municipios where IdMunicipio = ".$encuentros["IdMunicipio"];
 					$qmunicipio=mysqli_query ($link, $query);
@@ -135,9 +145,10 @@
 		else
 		{
 ?>			
-			<br><a href="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>includes/inc_calendario.php?opcion=<?= $opcion ?>','principal');"><?= cambiarAcentos(_VOLVER) ?></a>
+			<br><a href="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php','principal');"><?= cambiarAcentos(_VOLVER) ?></a>
 <?php 						
 		}
+		mysqli_free_result($qencuentros);
 	}
 	elseif ($dia)
 	{
@@ -283,15 +294,15 @@
 			$fechasfiestames[$x][0]=0;
 		}
     
-		$idfiestames = "";
+		//$idfiestames = "";
 		while($encuentros=mysqli_fetch_array($q, MYSQLI_BOTH))
 		{
 			$fechasfiestames[$encuentros["Dia"]][0]=1;
-			$idfiestames[$encuentros["Dia"]][0].=$encuentros["IdEncuentro"].", ";
+			//$idfiestames[$encuentros["Dia"]][0].=$encuentros["IdEncuentro"].", ";
 		}
 	
-		unset($_SESSION["IdsFiestasMes"]);
-		$_SESSION["IdsFiestasMes"] = $idfiestames;
+		//unset($_SESSION["IdsFiestasMes"]);
+		//$_SESSION["IdsFiestasMes"] = $idfiestames;
 ?>		
 		<table class="calendario" align="center" border="0" cellpadding="1" cellspacing="1">
 			<tr>
@@ -326,8 +337,9 @@
 			if($b == 0) print '<tr>';
 			if(!$c) $c = 1;
 			if($a > $EmpiezaMesCalOffset AND $c <= $TotalDiasMes){
+				$hayFiesta = false;
 				if($fechasfiestames[$c][0] == 1){
-					if($c == date(d) && $mes == date(m) && $ano == date(Y)){
+					if($c == date('d') && $mes == date('m') && $ano == date('Y')){
 						$bgcolor = "#ffcc99";
 					}elseif($b == 6){
 						$bgcolor = "#99cccc";
@@ -348,6 +360,7 @@
 						</table>
 					</td>
 <?php 					
+					$hayFiesta = true;
 				}
 				elseif($c == date('d') && $mes == date('m') && $ano == date('Y')){
 					$bgcolor = "#ffcc99";
@@ -356,9 +369,12 @@
 				}else{
 					$bgcolor = "#EEEEEE";
 				}
+				
+				if (!$hayFiesta){
 ?>				
 				<td bgcolor="<?= $bgcolor ?>" width="60" height="60" align="center" valign="middle"><?= $c ?></td>
 <?php 				
+				}
 				$c++;
 			}else{
 ?>
@@ -374,6 +390,5 @@
 		</table>
 <?php 		
 	}
-	
-	mysqli_free_result($q);
+
 ?>

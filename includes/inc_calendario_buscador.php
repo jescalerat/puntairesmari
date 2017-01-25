@@ -2,67 +2,77 @@
 		$query="select distinct Anyo from encuentros ";
 		$query.="order by Anyo desc";
 		
-		$q=mysql_query ($query,$link);
-		$filas=mysql_num_rows($q);
-		
-		print ("<table border=\"0\" width=\"100%\" align=\"center\">");
-			print ("<tr>");
-				print("<td><h1>"._BUSCADORENCUENTROS."</h1></td>");
-			print ("</tr>");
-			print ("<tr>");
-				print("<td>");
-					print ("<SELECT name=\"anyobuscador\" id=\"anyobuscador\" onChange=\"location=this.options[this.selectedIndex].value\">");
-					if ($_GET["ano"]==mysql_result($q,0,"anyo"))
+		$q=mysqli_query ($link, $query);
+		$rowano=mysqli_fetch_array($q, MYSQLI_BOTH);
+		//$filas=mysql_num_rows($q);
+?>		
+		<table border="0" width="100%" align="center">
+			<tr>
+				<td><h1><?= _BUSCADORENCUENTROS ?></h1></td>
+			</tr>
+			<tr>
+				<td>
+					<select name="anyobuscador" id="anyobuscador" onChange="location=this.options[this.selectedIndex].value">
+<?php 					
+					if (isset($_GET["ano"]) && $_GET["ano"]==$rowano["Anyo"])
 					{
-						print("<option value=javascript:llamada_prototype('".$_SESSION["rutaservidor"]."paginas/calendario.php?ano=".mysql_result($q,0,"anyo")."','principal') selected>".mysql_result($q,0,"anyo"));
+?>						
+						<option value="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?ano=<?= $rowano["Anyo"] ?>','principal')" selected><?= $rowano["Anyo"] ?>
+<?php 						
 					}
 					else
 					{
-						print("<option value=javascript:llamada_prototype('".$_SESSION["rutaservidor"]."paginas/calendario.php?ano=".mysql_result($q,0,"anyo")."','principal')>".mysql_result($q,0,"anyo"));
+?>					
+						<option value="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?ano=<?= $rowano["Anyo"] ?>','principal')"><?= $rowano["Anyo"] ?>	
+<?php 
 					}
 					
-					for ($x=1;$x<$filas;$x++)
+					while($anos=mysqli_fetch_array($q, MYSQLI_BOTH))
 					{
-						if ($_GET["ano"]==mysql_result($q,$x,"anyo"))
+						if (isset($_GET["ano"]) && $_GET["ano"]==$anos["Anyo"])
 						{
-							print("<option value=javascript:llamada_prototype('".$_SESSION["rutaservidor"]."paginas/calendario.php?ano=".mysql_result($q,$x,"anyo")."','principal') selected>".mysql_result($q,$x,"anyo"));
+?>							
+							<option value="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?ano=<?= $anos["Anyo"] ?>','principal')" selected><?= $anos["Anyo"] ?>
+<?php 
 						}
 						else
 						{
-							print("<option value=javascript:llamada_prototype('".$_SESSION["rutaservidor"]."paginas/calendario.php?ano=".mysql_result($q,$x,"anyo")."','principal')>".mysql_result($q,$x,"anyo"));
+?>
+							<option value="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?ano=<?= $anos["anyo"] ?>','principal')"><?= $anos["anyo"] ?>							
+<?php 
 						}
 					}
-					print ("</select>");
-				print("</td>");
-			print ("</tr>");
-			print ("<tr>");
-				print("<td>");
-					print("<div id=\"comunidades\">");
-						generaComunidades(0);
-					print("</div>");
-				print("</td>");
-			print ("</tr>");
-			print ("<tr>");
-				print("<td>");
-					print("<div id=\"provincias\">");
-						print ("<SELECT disabled=\"disabled\" name=\"op_provincias\" id=\"op_provincias\">");
-							print("<option value=\"0\">".cambiarAcentos(_PROVINCIAS)."</option>");
-						print ("</select>");
-					print("</div>");
-				print("</td>");
-			print ("</tr>");
-			print ("<tr>");
-				print("<td>");
-					print("<div id=\"municipios\">");
-						print ("<SELECT disabled=\"disabled\" name=\"op_municipios\" id=\"op_municipios\">");
-							print("<option value=\"0\">".cambiarAcentos(_MUNICIPIOS)."</option>");
-						print ("</select>");
-					print("</div>");
-				print("</td>");
-			print ("</tr>");
-		print("</table>");
-?>
+?>					
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="comunidades">
+						<?php generaComunidades(0); ?>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="provincias">
+						<select disabled="disabled" name="op_provincias" id="op_provincias">
+							<option value="0"><?= cambiarAcentos(_PROVINCIAS) ?></option>
+						</select>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="municipios">
+						<select disabled="disabled" name="op_municipios" id="op_municipios">
+							<option value="0"><?= cambiarAcentos(_MUNICIPIOS) ?></option>
+						</select>
+					</div>
+				</td>
+			</tr>
+		</table>
 
-<input type="hidden" id="comunidadesString" name="comunidadesString" value="<?print(cambiarAcentos(_COMUNIDADES));?>">
-<input type="hidden" id="provinciasString" name="provinciasString" value="<?print(cambiarAcentos(_PROVINCIAS));?>">
-<input type="hidden" id="municipiosString" name="municipiosString" value="<?print(cambiarAcentos(_MUNICIPIOS));?>">
+<input type="hidden" id="comunidadesString" name="comunidadesString" value="<?= cambiarAcentos(_COMUNIDADES) ?>">
+<input type="hidden" id="provinciasString" name="provinciasString" value="<?= cambiarAcentos(_PROVINCIAS) ?>">
+<input type="hidden" id="municipiosString" name="municipiosString" value="<?= cambiarAcentos(_MUNICIPIOS) ?>">

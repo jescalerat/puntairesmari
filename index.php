@@ -32,29 +32,16 @@
 	
 		<title>Puntaires Mari</title>	
 
-		<!-- <script type="text/javascript" src="js/ajax.js"></script> -->
 		<script type="text/javascript" src="js/funciones.js"></script>
 		<script type="text/javascript" src="js/prototype.js"></script>
 		<script type="text/javascript" src="js/scripts.js"></script>
+		<script type="text/javascript" src="js/ajax.js"></script>
 		
 		<link rel="stylesheet" href="css/plantilla.css">
 
-		<!-- Greybox -->
-		<!-- <link rel="stylesheet" href="css/gb_styles.css" media="all">
-		<script type="text/javascript">
-			var GB_ROOT_DIR = "js/greybox/";
-			var GB_IMATGES_DIR = "imagenes/greybox/";
-			var SALT = 0;
-		</script>
-		<script type="text/javascript" src="js/greybox/AJS.js"></script>
-		<script type="text/javascript" src="js/greybox/AJS_fx.js"></script>
-		<script type="text/javascript" src="js/greybox/gb_scripts.js"></script> -->
-		<!-- Greybox -->
 </head>
 <?php
-	//$_SESSION["ruta"] = $_SERVER["DOCUMENT_ROOT"]."/puntairesmari/";
-	//$_SESSION["rutaservidor"] = "http://".$_SERVER["SERVER_NAME"]."/puntairesmari/";
-	
+
 	$ruta = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], '/'));
 	$_SESSION["ruta"] = $ruta.="/";
 	//Servidor local

@@ -2,6 +2,20 @@
 //Devuelve la dirección IP real del cliente 
 function getRealIP()
 {
+      $client_ip =
+         ( !empty($_SERVER['REMOTE_ADDR']) ) ?
+            $_SERVER['REMOTE_ADDR']
+            :
+            ( ( !empty($_ENV['REMOTE_ADDR']) ) ?
+               $_ENV['REMOTE_ADDR']
+               :
+               "unknown" );
+   
+   return $client_ip;
+}
+
+function getRealIP2()
+{
    
    if( $_SERVER['HTTP_X_FORWARDED_FOR'] != '' )
    {
@@ -66,11 +80,11 @@ function generaComunidades($admin)
 	$link=Conectarse();
 	$query = "select IdComunidad, Comunidad from comunidades order by Comunidad asc";
 	$consulta=mysqli_query($link, $query);
-
+	
 	// Voy imprimiendo el primer select compuesto por las comunidades
 	echo "<select name='op_comunidades' id='op_comunidades' onChange='gestionCargaDatos(this.id,".$admin.")'>";
 	echo "<option value='0'>".cambiarAcentos(_COMUNIDADES)."</option>";
-	while($registro=mysql_fetch_row($consulta))
+	while($registro=mysqli_fetch_row($consulta))
 	{
 		echo "<option value='".$registro[0]."'>".cambiarAcentos($registro[1])."</option>";
 	}

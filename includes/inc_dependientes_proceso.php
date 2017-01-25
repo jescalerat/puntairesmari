@@ -21,14 +21,14 @@ if (strcmp("provincias",$tabla)==0)
 	$opcioncombo=cambiarAcentos(_PROVINCIAS);
 	$opciones=explode("@", $opcionSeleccionada);
 	$query="SELECT IdProvincia, IdComunidad, Provincia FROM $tabla WHERE IdComunidad=".($opciones[0]*1)." order by Provincia";
-	$consulta=mysql_query($query,$link) or die(mysql_error());
+	$consulta=mysqli_query($link, $query) or die(mysql_error());
 }
 else if (strcmp("municipios",$tabla)==0)
 {
 	$opcioncombo=cambiarAcentos(_MUNICIPIOS);
 	$opciones=explode("@", $opcionSeleccionada);
 	$query="SELECT IdMunicipio, IdProvincia, Municipio FROM $tabla WHERE IdProvincia=".($opciones[0]*1)." order by Municipio";
-	$consulta=mysql_query($query,$link) or die(mysql_error());
+	$consulta=mysqli_query($link, $query) or die(mysql_error());
 }
 
 $llamada=$_SERVER['HTTP_REFERER'];
@@ -39,7 +39,7 @@ if ($buscaradmin===false)$admin=0;
 // Comienzo a imprimir el select
 echo "<select name='".$selectDestino."' id='".$selectDestino."' onChange='gestionCargaDatos(this.id,".$admin.")'>";
 echo "<option value='0'>".$opcioncombo."</option>";
-while($registro=mysql_fetch_row($consulta))
+while($registro=mysqli_fetch_row($consulta))
 {
 	// Convierto los caracteres conflictivos a sus entidades HTML correspondientes para su correcta visualizacion
 	$registro[2]=htmlentities($registro[2]);
