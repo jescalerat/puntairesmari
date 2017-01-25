@@ -1,0 +1,150 @@
+body.principal
+{
+	background-color:rgb(0,0,0);
+	font-family : Comic Sans MS, sans-serif;
+	font-size : 14pt; 
+	color : red; 
+}
+
+body.presentacion
+{
+	background-color:rgb(0,0,0);
+}
+
+a:link { font-family:Verdana; color: red; text-decoration: none;} 
+a:visited { font-family:Verdana; color: red; text-decoration: none;}
+a:hover { font-family:Verdana; font-weight: bold; text-decoration: none;}
+
+button
+{
+	font-family: Tahoma, Verdana, Arial; 
+	font-size: 14px; 
+	color: #FFFFFF; 
+	background-color: #6699CC; 
+	border: #000099; 
+	border-style: solid; 
+	border-top-width: 1px; 
+	border-right-width: 1px;
+	border-bottom-width: 1px; 
+	border-left-width: 1px
+}
+
+input.boton
+{
+	font-family: Tahoma, Verdana, Arial; 
+	font-size: 14px; 
+	color: #FFFFFF; 
+	background-color: #6699CC; 
+	border: #000099; 
+	border-style: solid; 
+	border-top-width: 1px; 
+	border-right-width: 1px;
+	border-bottom-width: 1px; 
+	border-left-width: 1px
+}
+
+table.presentacion
+{
+	empty-cells: show;
+	border-style:none ; 
+	color : red; 
+	font-family : Comic Sans MS, sans-serif;
+	font-size : 14pt; 
+	text-align : left;
+}
+
+table.calendario
+{
+	border-color:navy;
+	border-style:none ; 
+	color : red; 
+	font-family : Comic Sans MS, sans-serif;
+	font-size : 10pt; 
+	text-align : left;
+}
+
+h1
+{
+	color : blue; 
+	font-family : Comic Sans MS, sans-serif;
+	font-size : 20pt; 
+}
+
+h1.contador
+{
+	color : yellow; 
+	font-family : Comic Sans MS, sans-serif;
+	font-size : 30pt; 
+	text-align: center;
+}
+
+input.reloj
+{
+	border-style:none ; 
+	background-color : rgb(0,0,0); 
+	color : red; 
+	font-family : Comic Sans MS, sans-serif;
+	font-size : 14pt; 
+	text-align : center;
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+/*Pestañas*/
+#ContTabul {
+      border-left: 1px solid #CCC;
+      border-right: 1px solid #CCC;
+      border-bottom: 1px solid #CCC;
+      padding: 10px 5px 6px 5px;
+}
+ul#tabnav {
+      list-style-type: none;
+      margin: 0;
+      padding-left: 0px;
+      /*padding-left: 40px;    Original*/
+      padding-bottom: 24px;
+      border-bottom: 1px solid #CCC;
+      font: 11px verdana, arial, sans-serif;
+}
+ul#tabnav li {
+      float: left;
+      height: 21px;
+      background-color: #E4E4E4;
+      color: #666;
+      /*margin: 2px 10px 0 2px;          Original*/
+      margin: 2px 2px 0 2px;
+      border: 1px solid #CCC;
+}
+ul#tabnav a:link, ul#tabnav a:visited {
+      display: block;
+      color: #666;
+      text-decoration: none;
+      padding: 4px;
+}
+ul#tabnav a:hover {
+      background-color: #CCC;
+      color: #666;
+}
+#tabnav .activo {
+      border-bottom: 1px solid #fff;
+      color: #000000;
+      background-color: #FFFFFF;
+}
+#tabnav .inactivo {}
+
+td#intertoto a:link { font-family:Verdana; color: blue; font-size:12px; } 
+td#intertoto a:visited { font-family:Verdana; color: blue; font-size:12px; }
+td#intertoto a:hover { font-family:Verdana; font-weight: bold; color: blue; background-color: rgb(197,214,232); font-size:12px;}
+
+/* Fin de Pestañas*/
+/*---------------------------------------------------------------------------------------------------------------*/
+
+/*Formulario contacto*/
+input.error_contactar
+{
+	border-style:none ; 
+	background-color : rgb(0,0,0); 
+	color : red; 
+	font-family : Verdana;
+	font-size : 10pt; 
+	text-align : left;
+}

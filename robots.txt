@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /admin_web
+Disallow: /includes
+Disallow: /paginas
