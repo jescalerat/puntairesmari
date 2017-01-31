@@ -5,7 +5,7 @@
     }
     
 	unset($_SESSION["pagina"]);
-	$_SESSION["pagina"]=5;
+	$_SESSION["pagina"]=4;
 	
 	require_once($_SESSION["ruta"]."conf/traduccion.php");
 	require_once($_SESSION["ruta"]."conf/funciones.php");
@@ -15,7 +15,7 @@
 		<table border="0" width="100%">
 			<tr>
 				<td>
-					<?php require_once($_SESSION["ruta"]."includes/inc_contactos.php"); ?>
+					<?php require_once($_SESSION["ruta"]."includes/inc_carteles.php"); ?>
 				</td>
 			</tr>
 		</table>
@@ -38,4 +38,4 @@
 	}
 ?>
 
-<input type="hidden" name="paginaactual" id="paginaactual" value="<?= $_SESSION["pagina"] ?>">
+	<input type="hidden" name="paginaactual" id="paginaactual" value="<?= $_SESSION["pagina"] ?>">

@@ -1,34 +1,36 @@
-<?
-	if (!isset($link))
-	{
-	    require_once($_SESSION["ruta"]."conf/conexion.php");
-	    $link=Conectarse();
-	}
-
+<?php
 	$idencuentro = $_GET["idencuentro"];
 
 	$query="select * from contactos where IdEncuentro = ".$idencuentro;
-	$q=mysql_query ($query,$link);
+	$q=mysqli_query ($link, $query);
 	
 	//Obtener el numero de filas devuelto
-	$total_registros=mysql_num_rows($q);
-	
-	print ("<table border=\"0\" width=\"100%\">");
-		print ("<tr>");
+	$total_registros=mysqli_num_rows($q);
+?>	
+	<table border="0" width="100%">
+		<tr>
+<?php 		
 			if ($total_registros==0)
 			{
-				print ("<td>".cambiarAcentos(_SINCONTACTO)."</td>");
+?>				
+				<td><?= cambiarAcentos(_SINCONTACTO) ?></td>
+<?php 				
 			}
 			else
 			{
-				print ("<td>");
-					for ($x=0;$x<$total_registros;$x++)
+?>				
+				<td>
+<?php 				
+					while($contactos=mysqli_fetch_array($q, MYSQLI_BOTH))
 					{
-						print(cambiarAcentos(mysql_result($q,$x,"Contacto")));
+						print(cambiarAcentos($contactos["Contacto"]));
 						print ("<br>");
 					}
-				print ("</td>");
+?>					
+				</td>
+<?php 				
 			}
-		print ("</tr>");
-	print ("</table>");	
+			mysqli_free_result($q);
 ?>
+		</tr>
+	</table>	

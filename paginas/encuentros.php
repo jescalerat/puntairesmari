@@ -1,18 +1,26 @@
-<?
-	session_start();
+<?php
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+    
 	unset($_SESSION["pagina"]);
 	$_SESSION["pagina"]=3;
 	
 	require_once($_SESSION["ruta"]."conf/traduccion.php");
 	require_once($_SESSION["ruta"]."conf/funciones.php");
-	
-	print ("<table border=0 width=100%>");
-		print ("<tr>");
-			print ("<td>");
-					require_once($_SESSION["ruta"]."includes/inc_encuentros.php");
-			print ("</td>");
-		print ("</tr>");
-	print ("</table>");
+	require_once($_SESSION["ruta"]."conf/conexion.php");
+	$link=Conectarse();
+?>
+		<table border="0" width="100%">
+			<tr>
+				<td>
+					<?php require_once($_SESSION["ruta"]."includes/inc_encuentros.php"); ?>
+				</td>
+			</tr>
+		</table>
+		
+<?php 		
 	
 	$dia = $_GET["dia"];
 	$mes = $_GET["mes"];
@@ -25,10 +33,10 @@
 	{
 		//Query para insertar los valores en la base de datos
 		$query="insert into paginas_vistas (IP,Hora,Fecha,Pagina,Observaciones) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["pagina"].",\"".$observaciones."\")";
-		mysql_query($query,$link);
+		mysqli_query($link, $query);
 	}
 ?>
 
 <form name="buscapagina">
-	<input type="hidden" name="paginaactual" id="paginaactual" value="<?print ($_SESSION["pagina"]);?>">
+	<input type="hidden" name="paginaactual" id="paginaactual" value="<?= $_SESSION["pagina"] ?>">
 </form>

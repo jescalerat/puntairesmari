@@ -1,11 +1,11 @@
 <html>
 	<head>
-		<script src="../js/ajax.js" language="JavaScript"></script>
-		<script src="../js/funciones.js" language="JavaScript"></script>
-		<script src="../js/prototype.js" language="JavaScript"></script>
+		<script type="text/javascript" src="../js/funciones.js"></script>
+		<script type="text/javascript" src="../js/prototype.js"></script>
+		<script type="text/javascript" src="../js/ajax.js"></script>
 	</head>
 	<body>
-<?
+<?php
 	require_once("../conf/funciones.php");
 	require_once("../conf/conexion.php");
 	$link=Conectarse();
@@ -25,7 +25,7 @@
 
   	
 		$query="insert into municipios (IdProvincia,Municipio) values (".$idprovincia.",\"".$municipio."\")";
-		$qresultado=mysql_query ($query,$link);
+		$qresultado=mysqli_query ($link, $query);
 
 		if ($qresultado<>1)
 		{
@@ -35,39 +35,47 @@
 		
 		//Buscar el ultimo id de la comunidad, la provincia y el pais
 		$query="select IdMunicipio from municipios order by idmunicipio desc limit 0,1";
-		$qidmunicipio=mysql_query ($query,$link);
+		$qidmunicipio=mysqli_query ($link, $query);
+		$rowmunicipio=mysqli_fetch_array($qidmunicipio, MYSQLI_BOTH);
 
-		$proximoid = mysql_result($qidmunicipio,0,"IdMunicipio");
-
-		print ("<table border=\"0\" width=\"100%\">");
-			print("<tr>");
-				print("<td><a href=\"index.php\">Indice</a></td>");
-				print("<td><a href=\"gestionar_municipios.php\">Otro municipio</a></td>");
-				print("<td><a href=\"gestionar_lugar.php?IdMunicipio=".$proximoid."\">Insertar encuentro</a></td>");
-			print("</tr>");
-		print("</table>");			
+		$proximoid = $rowmunicipio["IdMunicipio"];
+?>
+		<table border="0" width="100%">
+			<tr>
+				<td><a href="index.php">Indice</a></td>
+				<td><a href="gestionar_municipios.php">Otro municipio</a></td>
+				<td><a href="gestionar_lugar.php?IdMunicipio=<?= $proximoid ?>">Insertar encuentro</a></td>
+			</tr>
+		</table>
+<?php 					
 	}
 	else
 	{
-		print ("<form name=\"encuentros\" id=\"encuentros\" method=\"post\">");
-			generaComunidades(1);
-			print ("<p>");
-				print ("<SELECT disabled=\"disabled\" name=\"op_provincias\" id=\"op_provincias\">");
-					print("<option value=\"0\">Provincias</option>");
-				print ("</select>");
-				print ("<p>");
-				print ("<SELECT disabled=\"disabled\" name=\"op_municipios\" id=\"op_municipios\">");
-					print("<option value=\"0\">Municipios</option>");
-				print ("</select>");
-				print ("<p>");
-			print ("Municipio: <input tipe=\"text\" id=\"municipio\" name=\"municipio\" size=\"30\" maxlength=50/>");
-			print ("<p>");
-			print ("<input type=\"submit\" name=\"enviar\" id=\"enviar\" value=\"Guardar\"/>");
-		print ("</form>");
-		print ("<p><a href=\"index.php\">Indice</a>");
+?>		
+		<form name="encuentros" id="encuentros" method="post">
+			<?php generaComunidades(1); ?>
+			<p>
+				<select disabled="disabled" name="op_provincias" id="op_provincias">
+					<option value="0">Provincias</option>
+				</select>
+			</p>
+			<p>
+				<select disabled="disabled" name="op_municipios" id="op_municipios">
+					<option value="0">Municipios</option>
+				</select>
+			</p>
+			<p>
+				Municipio: <input tipe="text" id="municipio" name="municipio" size="30" maxlength="50"/>
+			</p>
+			<p>
+				<input type="submit" name="enviar" id="enviar" value="Guardar"/>
+			</p>
+		</form>
+		<p><a href="index.php">Indice</a></p>
+<?php 
 	}
 ?>
-<input type="hidden" id="provinciasString" name="provinciasString" value="<?print(cambiarAcentos(_PROVINCIAS));?>">
-<input type="hidden" id="municipiosString" name="municipiosString" value="<?print(cambiarAcentos(_MUNICIPIOS));?>">
+		<input type="hidden" id="provinciasString" name="provinciasString" value="<?= cambiarAcentos(_PROVINCIAS) ?>">
+		<input type="hidden" id="municipiosString" name="municipiosString" value="<?= cambiarAcentos(_MUNICIPIOS) ?>">
 	</body>
 </html>	

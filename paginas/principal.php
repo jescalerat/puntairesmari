@@ -1,11 +1,11 @@
-<?
+<?php
 	session_start();
 	unset($_SESSION["pagina"]);
 	$_SESSION["pagina"]=1;
 	
 	if (!isset($link))
 	{
-    require_once($_SESSION["ruta"]."conf/traduccion.php");
+    	require_once($_SESSION["ruta"]."conf/traduccion.php");
 		require_once($_SESSION["ruta"]."conf/funciones.php");
 		require_once($_SESSION["ruta"]."conf/conexion.php");
 	}
@@ -13,21 +13,21 @@
 
 	
 	$presentacion = "Bienvenido a la web de la fiesta nacional.<br><br>";
-	$presentacion .= "Aquí podrás encontrar fotos, fechas... de los festejos más populares del país.<br><br>";
-	$presentacion .= "Además te animo a colaborar para que el noble arte del recorte, els bous al carrer... no caiga en el olvido enviando crónicas, fotos y fiestas que sean conocidas por tí.<br><br>";
+	$presentacion .= "Aquï¿½ podrï¿½s encontrar fotos, fechas... de los festejos mï¿½s populares del paï¿½s.<br><br>";
+	$presentacion .= "Ademï¿½s te animo a colaborar para que el noble arte del recorte, els bous al carrer... no caiga en el olvido enviando crï¿½nicas, fotos y fiestas que sean conocidas por tï¿½.<br><br>";
 	$presentacion .= "Desde Hospitalet al Mundo.<br><br>";
-	$presentacion .= "Porque la tradición... hay que respetarla.";
+	$presentacion .= "Porque la tradiciï¿½n... hay que respetarla.";
 	
 	print (cambiarAcentos($presentacion));
 	
 	if (!isset($_SESSION["admin_web"]))
 	{
-   	//Query para insertar los valores en la base de datos
-    $query="insert into paginas_vistas (IP,Hora,Fecha,Pagina) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["pagina"].")";
-		mysql_query($query,$link);
+   		//Query para insertar los valores en la base de datos
+    	$query="insert into paginas_vistas (IP,Hora,Fecha,Pagina) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["pagina"].")";
+		mysqli_query($link, $query);
 	}
 ?>
 
 <form name="buscapagina">
-	<input type="hidden" name="paginaactual" id="paginaactual" value="<?print ($_SESSION["pagina"]);?>">
+	<input type="hidden" name="paginaactual" id="paginaactual" value="<?= $_SESSION["pagina"] ?>">
 </form>

@@ -35,9 +35,11 @@
 		$totalopciones=count($opciones);
 		
 		$idopcion1=$opciones[0]*1;
+		$idopcion2=0;
 		if ($totalopciones == 2){
 			$idopcion2=$opciones[1]*1;
 		}
+		$idopcion3=0;
 		if ($totalopciones == 3){
 			$idopcion3=$opciones[2]*1;
 		}
@@ -156,6 +158,7 @@
 
 		$fiestasmes = explode(", ",$tmp[$dia][0]);
 		$tamany = sizeof($fiestasmes)-1;
+		$ids = 0;
 		for ($x=0;$x<$tamany;$x++)
 		{
 			$ids .=$fiestasmes[$x];
@@ -171,7 +174,7 @@
 		<h1><?= _ENCUENTROSDIA ?> <?= fecha($dia,$mes,$ano) ?></h1>
 		<table border="0" width="100%">
 <?php 		
-		while($encuentros=mysqli_fetch_array($resultados, MYSQLI_BOTH))
+		while($encuentros=mysqli_fetch_array($q, MYSQLI_BOTH))
 		{
 			$query="select * from municipios where IdMunicipio = ".$encuentros["IdMunicipio"];
 			$qmunicipio=mysqli_query ($link, $query);
@@ -189,6 +192,7 @@
 				</tr>
 <?php 				
 		}
+		mysqli_free_result($q);
 ?>		
 		</table>
 		<br><a href="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?mes=<?= $mes ?>&ano=<?= $ano ?>','principal')"><?= cambiarAcentos(_VOLVER) ?></a>
@@ -288,21 +292,23 @@
 		$query="select * from encuentros where Mes = ".$mes." and Anyo = ".$ano;
 		$q=mysqli_query ($link, $query);
 		
-		//Inicializar array para saber los días de fiesta
+		//Inicializar array para saber los dï¿½as de fiesta
 		for ($x=1;$x<=31;$x++)
 		{
 			$fechasfiestames[$x][0]=0;
+			$idfiestames[$x][0]=0;
 		}
     
 		//$idfiestames = "";
 		while($encuentros=mysqli_fetch_array($q, MYSQLI_BOTH))
 		{
-			$fechasfiestames[$encuentros["Dia"]][0]=1;
-			//$idfiestames[$encuentros["Dia"]][0].=$encuentros["IdEncuentro"].", ";
+			$encuentrosDia = $encuentros["Dia"];
+			$fechasfiestames[$encuentrosDia][0]=1;
+			$idfiestames[$encuentrosDia][0].=$encuentros["IdEncuentro"].", ";
 		}
 	
-		//unset($_SESSION["IdsFiestasMes"]);
-		//$_SESSION["IdsFiestasMes"] = $idfiestames;
+		unset($_SESSION["IdsFiestasMes"]);
+		$_SESSION["IdsFiestasMes"] = $idfiestames;
 ?>		
 		<table class="calendario" align="center" border="0" cellpadding="1" cellspacing="1">
 			<tr>

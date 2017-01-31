@@ -1,25 +1,25 @@
 <?php
 
-
+	$idioma=1;
 	$idioma=$_SESSION['idiomapagina'];
 
-	if ($idioma==1) //Español
+	if ($idioma==1) //EspaÃ±ol
 	{
 		//General
 		define ('_VOLVER','Volver');
 		
 		//Presentacion
-		define ('_SALTAR','Saltar presentación');
+		define ('_SALTAR','Saltar presentaciÃ³n');
 	
 		//Cambio idioma
-		define ('_ESPANYOL','Español');
-		define ('_INGLES','Inglés');
-		define ('_CATALAN','Catalán');
+		define ('_ESPANYOL','EspaÃ±ol');
+		define ('_INGLES','InglÃ©s');
+		define ('_CATALAN','CatalÃ¡n');
 		define ('_CAMBIOIDIOMA','Cambio idioma');
 		define ('_CAMBIANDOIDIOMA','Cambiando idioma');
 		
 		//Inicio
-		define ('_BUENOSDIAS','Buenos días');
+		define ('_BUENOSDIAS','Buenos dÃ­as');
 		define ('_BUENASTARDES','Buenas tardes');
 		define ('_BUENASNOCHES','Buenas noches');
 			
@@ -29,23 +29,23 @@
 		define ('_ENCUENTROSPROVINCIA','Encuentros en la provincia de ');
 		define ('_ENCUENTROSMUNICIPIO','Encuentros en el municipio de ');
 		define ('_LUGAR','Lugar');
-		define ('_DIA','Día');
+		define ('_DIA','DÃ­a');
 		
 		//Calendario Buscador
 		define ('_BUSCADORENCUENTROS','Buscador');
-		define ('_PAISES','Países');
+		define ('_PAISES','PaÃ­ses');
 		define ('_COMUNIDADES','Comunidades');
 		define ('_PROVINCIAS','Provincias');
 		define ('_MUNICIPIOS','Municipios');
 	
-		//Pestañas Encuentros
+		//PestaÃ±as Encuentros
 		define ('_CARTELES','Carteles');
 		define ('_CONTACTOS','Contactos');
 	
-		//Pestañas Encuentros Carteles
+		//PestaÃ±as Encuentros Carteles
 		define ('_SINCARTEL','Carteles no disponibles');
 		
-		//Pestañas Encuentros Contactos
+		//PestaÃ±as Encuentros Contactos
 		define ('_SINCONTACTO','Contactos no disponibles');
 		
 		//Contacta
@@ -57,23 +57,23 @@
 		define ('_INSTRUCCION1','Todos los campos son obligatorios'); 
 		define ('_INSTRUCCION2','En caso de error siga las instrucciones:'); 
 		define ('_ERROR1','Introduce un nombre o alias para poder comunicarme contigo'); 
-		define ('_ERROR2','Introduce una dirección de correo para poder comunicarme contigo'); 
+		define ('_ERROR2','Introduce una direcciÃ³n de correo para poder comunicarme contigo'); 
 		define ('_ERROR3','Introduce el mensaje que me quieres transmitir'); 
-		define ('_RESPUESTA1','Gracias por dar su opinión');
-		define ('_RESPUESTA2','En menos de 24 horas me pondré en contacto con usted para resolver sus dudas');
+		define ('_RESPUESTA1','Gracias por dar su opiniÃ³n');
+		define ('_RESPUESTA2','En menos de 24 horas me pondrÃ© en contacto con usted para resolver sus dudas');
 		define ('_OTRACONSULTA','Otra consulta');
-		define ('_CONTACTAR','Si hay algún problema con el formulario envíeme un mensaje a esta dirección <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. Gracias');
+		define ('_CONTACTAR','Si hay algÃºn problema con el formulario envÃ­eme un mensaje a esta direcciÃ³n <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. Gracias');
 		
-		//Días de la semana
+		//DÃ­as de la semana
 		define ('_LUNES','Lunes'); 
 		define ('_MARTES','Martes'); 
-		define ('_MIERCOLES','Miércoles'); 
+		define ('_MIERCOLES','MiÃ©rcoles'); 
 		define ('_JUEVES','Jueves'); 
 		define ('_VIERNES','Viernes'); 
-		define ('_SABADO','Sábado'); 
+		define ('_SABADO','SÃ¡bado'); 
 		define ('_DOMINGO','Domingo'); 
 	
-		//Meses del año
+		//Meses del aÃ±o
 		define ('_ENERO','Enero'); 
 		define ('_FEBRERO','Febrero'); 
 		define ('_MARZO','Marzo'); 
@@ -87,16 +87,16 @@
 		define ('_NOVIEMBRE','Noviembre'); 
 		define ('_DICIEMBRE','Diciembre'); 
 		
-		//Días de la semana abreviados
+		//DÃ­as de la semana abreviados
 		define ('_LUNESABR','Lun'); 
 		define ('_MARTESABR','Mar'); 
 		define ('_MIERCOLESABR','Mie'); 
 		define ('_JUEVESABR','Jue'); 
 		define ('_VIERNESABR','Vie'); 
-		define ('_SABADOABR','Sáb'); 
+		define ('_SABADOABR','SÃ¡b'); 
 		define ('_DOMINGOABR','Dom'); 
 	
-		//Meses del año abreviados
+		//Meses del aÃ±o abreviados
 		define ('_ENEROABR','Ene'); 
 		define ('_FEBREROABR','Feb'); 
 		define ('_MARZOABR','Mar'); 
@@ -145,14 +145,14 @@
 		define ('_PROVINCIAS','Provinces');
 		define ('_MUNICIPIOS','Towns');
 	
-		//Pestañas Encuentros
+		//PestaÃ±as Encuentros
 		define ('_CARTELES','Carteles');
 		define ('_CONTACTOS','Contactos');
 		
-		//Pestañas Encuentros Carteles
+		//PestaÃ±as Encuentros Carteles
 		define ('_SINCARTEL','Cartel no disponible');
 	
-		//Pestañas Encuentros Contactos
+		//PestaÃ±as Encuentros Contactos
 		define ('_SINCONTACTO','Contactos no disponibles');
 		
 		//Contacta
@@ -171,7 +171,7 @@
 		define ('_OTRACONSULTA','Any question');
 		define ('_CONTACTAR','If you have some problem with the form send me a message to this direction <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. Thanks you');
 		
-		//Días de la semana
+		//DÃ­as de la semana
 		define ('_LUNES','Monday'); 
 		define ('_MARTES','Tuesday'); 
 		define ('_MIERCOLES','Wednesday'); 
@@ -180,7 +180,7 @@
 		define ('_SABADO','Saturday'); 
 		define ('_DOMINGO','Sunday'); 
 	
-		//Meses del año
+		//Meses del aÃ±o
 		define ('_ENERO','January'); 
 		define ('_FEBRERO','February'); 
 		define ('_MARZO','March'); 
@@ -194,7 +194,7 @@
 		define ('_NOVIEMBRE','November'); 
 		define ('_DICIEMBRE','December'); 
 		
-		//Días de la semana abreviados
+		//DÃ­as de la semana abreviados
 		define ('_LUNESABR','Mon'); 
 		define ('_MARTESABR','Tue'); 
 		define ('_MIERCOLESABR','Wed'); 
@@ -203,7 +203,7 @@
 		define ('_SABADOABR','Sat'); 
 		define ('_DOMINGOABR','Sun'); 
 	
-		//Meses del año abreviados
+		//Meses del aÃ±o abreviados
 		define ('_ENEROABR','Jan'); 
 		define ('_FEBREROABR','Feb'); 
 		define ('_MARZOABR','Mar'); 
@@ -223,12 +223,12 @@
 		define ('_VOLVER','Tornar');
 	
 		//Presentacion
-		define ('_SALTAR','Saltar presentació');
+		define ('_SALTAR','Saltar presentaciÃ³');
 	
 		//Cambio idioma
 		define ('_ESPANYOL','Espanyol');
-		define ('_INGLES','Anglès');
-		define ('_CATALAN','Català');
+		define ('_INGLES','AnglÃ¨s');
+		define ('_CATALAN','CatalÃ ');
 		define ('_CAMBIOIDIOMA','Canvi d\'idioma');
 		define ('_CAMBIANDOIDIOMA','Canviant idioma');
 		
@@ -240,45 +240,45 @@
 		//Calendario
 		define ('_ENCUENTROSDIA','Trobades el ');
 		define ('_ENCUENTROSCOMUNIDAD','Trobades a la comunitat de ');
-		define ('_ENCUENTROSPROVINCIA','Trobades a la província de ');
+		define ('_ENCUENTROSPROVINCIA','Trobades a la provÃ­ncia de ');
 		define ('_ENCUENTROSMUNICIPIO','Trobades al municipi de ');	
 		define ('_LUGAR','Lloc');
 		define ('_DIA','Dia');
 		
 		//Calendario Buscador
 		define ('_BUSCADORENCUENTROS','Cercador');
-		define ('_PAISES','Països');
+		define ('_PAISES','PaÃ¯sos');
 		define ('_COMUNIDADES','Comunitats');
-		define ('_PROVINCIAS','Províncies');
+		define ('_PROVINCIAS','ProvÃ­ncies');
 		define ('_MUNICIPIOS','Municipis');
 	
-		//Pestañas Encuentros
+		//PestaÃ±as Encuentros
 		define ('_CARTELES','Cartells');
 		define ('_CONTACTOS','Contactes');
 	
-		//Pestañas Encuentros Carteles
+		//PestaÃ±as Encuentros Carteles
 		define ('_SINCARTEL','Cartells no disponibles');
 	
-		//Pestañas Encuentros Contactos
+		//PestaÃ±as Encuentros Contactos
 		define ('_SINCONTACTO','Contactes no disponibles');
 		
 		//Contacta
 		define ('_TITULO','Missatge al webmaster'); 
-		define ('_INTRODUCENOMBRE','Introdueix el teu nom o àlies'); 
+		define ('_INTRODUCENOMBRE','Introdueix el teu nom o Ã lies'); 
 		define ('_EMAIL','Email'); 
 		define ('_MENSAJE','El teu missatge'); 
 		define ('_ENVIAR','Enviar'); 
-		define ('_INSTRUCCION1','Tots els camps són obligatoris'); 
+		define ('_INSTRUCCION1','Tots els camps sÃ³n obligatoris'); 
 		define ('_INSTRUCCION2','En cas d\'error seguiu les instruccions:'); 
-		define ('_ERROR1','Introdueix un nom o àlies per poder comunicar amb tu'); 
-		define ('_ERROR2','Introdueix una adreça de correu per poder comunicar amb tu'); 
+		define ('_ERROR1','Introdueix un nom o Ã lies per poder comunicar amb tu'); 
+		define ('_ERROR2','Introdueix una adreÃ§a de correu per poder comunicar amb tu'); 
 		define ('_ERROR3','Introdueix el missatge que em vols transmetre'); 
-		define ('_RESPUESTA1','Gràcies per donar la seva opinió');
-		define ('_RESPUESTA2','En menys de 24 hores em posaré en contacte amb vostè per resoldre els seus dubtes');
+		define ('_RESPUESTA1','GrÃ cies per donar la seva opiniÃ³');
+		define ('_RESPUESTA2','En menys de 24 hores em posarÃ© en contacte amb vostÃ¨ per resoldre els seus dubtes');
 		define ('_OTRACONSULTA','Una altra consulta');
-		define ('_CONTACTAR','Si hi ha algun problema amb el formulari envieu un missatge a aquesta adreça <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. Gràcies');
+		define ('_CONTACTAR','Si hi ha algun problema amb el formulari envieu un missatge a aquesta adreÃ§a <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. GrÃ cies');
 		
-		//Días de la semana
+		//DÃ­as de la semana
 		define ('_LUNES','Dilluns'); 
 		define ('_MARTES','Dimarts'); 
 		define ('_MIERCOLES','Dimecres'); 
@@ -287,10 +287,10 @@
 		define ('_SABADO','Dissabte'); 
 		define ('_DOMINGO','Diumenge'); 
 	
-		//Meses del año
+		//Meses del aÃ±o
 		define ('_ENERO','Gener'); 
 		define ('_FEBRERO','Febrer'); 
-		define ('_MARZO','Març'); 
+		define ('_MARZO','MarÃ§'); 
 		define ('_ABRIL','Abril'); 
 		define ('_MAYO','Maig'); 
 		define ('_JUNIO','Juny'); 
@@ -301,7 +301,7 @@
 		define ('_NOVIEMBRE','Novembre'); 
 		define ('_DICIEMBRE','Desembre'); 
 		
-		//Días de la semana abreviados
+		//DÃ­as de la semana abreviados
 		define ('_LUNESABR','Dil'); 
 		define ('_MARTESABR','Dim'); 
 		define ('_MIERCOLESABR','Dc'); 
@@ -310,7 +310,7 @@
 		define ('_SABADOABR','Dis'); 
 		define ('_DOMINGOABR','Diu'); 
 	
-		//Meses del año abreviados
+		//Meses del aÃ±o abreviados
 		define ('_ENEROABR','Gen'); 
 		define ('_FEBREROABR','Feb'); 
 		define ('_MARZOABR','Mar'); 
@@ -337,8 +337,8 @@
 		define ('_PASSWORD','Parola d\'accesso');
 		define ('_ENTRAR','Entrare');
 		define ('_REGISTRAR','Registrazione');
-		define ('_NOENCONTRADO','Il nome dell\'utente o della parola d\'accesso è non valido');
-		define ('_ERRORREGISTRO','Il nome dell\'utente già esiste');
+		define ('_NOENCONTRADO','Il nome dell\'utente o della parola d\'accesso Ã¨ non valido');
+		define ('_ERRORREGISTRO','Il nome dell\'utente giÃ  esiste');
 	
 		//Registro
 		define ('_TITULOREGISTRO','MODULO DI REGISTRAZIONE');
@@ -363,7 +363,7 @@
 	---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		http://www.allwords.com
 	
-		//Página resultados
+		//PÃ¡gina resultados
 		define ('_IDA','First leg'); 
 		define ('_VUELTA','Second leg'); 
 		define ('_INCIDENCIAS','Information'); 
@@ -373,7 +373,7 @@
 		define ('_SUSPENDIDO','Suspended ');
 		define ('_PROMOCION','Promote');
 	
-		//Página quiniela
+		//PÃ¡gina quiniela
 		define ('_VOLVERQUINIELA','Return to quiniela'); 
 		define ('_PARTIDOS','Matches'); 
 		define ('_PARTIDO','Match'); 
@@ -394,7 +394,7 @@
 		define ('_ENVIARQUINIELA','Send');
 		define ('_TIEMPOTERMINADO','El tiempo para rellenar la quiniela a terminado');
 	
-		//Página encuesta
+		//PÃ¡gina encuesta
 		define ('_ENCUESTA','Poll'); 
 		define ('_PREGUNTA','Who you think that Liga will win?'); 
 		define ('_EQUIPOENCUESTA','Team'); 
@@ -407,14 +407,14 @@
 		define ('_PORCENTAGESENCUESTA','Percentage');
 		define ('_VOTANTESSENCUESTA','Voters');
 		
-		//Página goleadores
+		//PÃ¡gina goleadores
 		define ('_VOLVERRESULTADOS','Return to results'); 
 		define ('_VOLVERPROMOCION','Return to promote');
 		define ('_CAMPO','Stadium'); 
 		define ('_SOLOREGISTRADOSCOMENTARIOS','Registered if you want to leave your commentary');
 		define ('_FECHAPARTIDO','Date');
 	
-		//Página clasificación
+		//PÃ¡gina clasificaciÃ³n
 		define ('_CLASIFICACION','league table position'); 
 		define ('_EQUIPO','Team'); 
 		define ('_PUNTOS','Points'); 
@@ -429,9 +429,9 @@
 		define ('_PARTIDOSFUERA','Matches played visitor'); 
 		define ('_PARTIDOS1VUELTA','Matches played 1st leg'); 
 		define ('_PARTIDOS2VUELTA','Matches played 2nd leg'); 
-		define ('_ASCIENDE','Ascends to 1ª Regional'); 
-		define ('_PROMOCIONA','Promotes for 1ª Regional'); 
-		define ('_DESCIENDE','Descends to 3ª Regional'); 
+		define ('_ASCIENDE','Ascends to 1Âª Regional'); 
+		define ('_PROMOCIONA','Promotes for 1Âª Regional'); 
+		define ('_DESCIENDE','Descends to 3Âª Regional'); 
 		define ('_SANCION','Sanctioned with ');
 		define ('_VOLVERCLASIFICACION','Return to league table position');
 	
@@ -472,7 +472,7 @@
 		define ('_VOLVEROTROSEQUIPOS','Return to others teams'); 
 		define ('_VOLVERCLUB','Return to club');
 	
-		//Página ficha
+		//PÃ¡gina ficha
 		define ('_VOLVEREQUIPO','Return to team'); 
 		define ('_NOMBRECOMPLETO','Real name'); 
 		define ('_GOLESTOTALES','Total Goals'); 
@@ -494,8 +494,8 @@
 		define ('_SI','Yes');
 		define ('_NO','No');
 	
-		//Página tabla goleadores
-		//Página tabla goleadores
+		//PÃ¡gina tabla goleadores
+		//PÃ¡gina tabla goleadores
 		define ('_GOLEADORES1','Goals Scored Dinamico Batllo');
 		define ('_GOLEADORES2','Goals Scored');
 		define ('_JUGADOR','Player');
@@ -504,13 +504,13 @@
 		define ('_JUGADA','Goal');
 		define ('_PENALTY','Penalty');
 	
-		//Página comentarios
+		//PÃ¡gina comentarios
 		define ('_COMENTARIOS','Commentaries');
 		define ('_AUTOR','Author');
 		define ('_COMENTARIO','Commentary');
 		define ('_NOCOMENT','No commentaries');
 	
-		//Página partidos pendientes
+		//PÃ¡gina partidos pendientes
 		define ('_PARTIDOSPENDIENTES','Pending matches');
 		define ('_PARTPENJORNADA','Matchday');
 		define ('_PARTPENFECHA','Predicted date');
@@ -534,7 +534,7 @@
 		//define ('_CONTACTAR','If you have some problem with the form send me a message to this direction <a href=mailto:dinamicobatllo@iespana.es>dinamicobatllo@iespana.es</a>. Thanks you');
 		define ('_CONTACTAR','If you have some problem with the form send me a message to this direction <a href=mailto:webmaster@dinamicobatllo.tuocio.es>webmaster@dinamicobatllo.tuocio.es</a>. Thanks you');
 	
-		//Días de la semana
+		//DÃ­as de la semana
 		define ('_LUNES','Monday'); 
 		define ('_MARTES','Tuesday'); 
 		define ('_MIERCOLES','Wednesday'); 
@@ -543,7 +543,7 @@
 		define ('_SABADO','Saturday'); 
 		define ('_DOMINGO','Sunday'); 
 	
-		//Meses del año
+		//Meses del aÃ±o
 		define ('_ENERO','January'); 
 		define ('_FEBRERO','February'); 
 		define ('_MARZO','March'); 
@@ -557,7 +557,7 @@
 		define ('_NOVIEMBRE','November'); 
 		define ('_DICIEMBRE','December'); 
 	
-		//Menú
+		//MenÃº
 		define ('_MENUINICIO','Home'); 
 		define ('_MENUCLUB','Club'); 
 		define ('_MENUGOLEADORES','Goals Scored'); 

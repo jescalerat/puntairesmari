@@ -1,8 +1,8 @@
 <html>
 	<head>
-		<script src="../js/ajax.js" language="JavaScript"></script>
-		<script src="../js/funciones.js" language="JavaScript"></script>
-		<script src="../js/prototype.js" language="JavaScript"></script>
+		<script type="text/javascript" src="../js/funciones.js"></script>
+		<script type="text/javascript" src="../js/prototype.js"></script>
+		<script type="text/javascript" src="../js/ajax.js"></script>
 	</head>
 	<body>
 		<table border="0" width="100%" align="center">
