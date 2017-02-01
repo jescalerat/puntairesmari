@@ -1,7 +1,9 @@
 <?php
 
 	$idioma=1;
-	$idioma=$_SESSION['idiomapagina'];
+	if (isset($_SESSION['idiomapagina'])){
+		$idioma=$_SESSION['idiomapagina'];
+	}
 
 	if ($idioma==1) //Español
 	{

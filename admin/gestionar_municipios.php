@@ -47,7 +47,9 @@
 				<td><a href="gestionar_lugar.php?IdMunicipio=<?= $proximoid ?>">Insertar encuentro</a></td>
 			</tr>
 		</table>
-<?php 					
+<?php 				
+		mysqli_free_result($qresultado);
+		mysqli_free_result($qidmunicipio);
 	}
 	else
 	{

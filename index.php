@@ -5,11 +5,6 @@
 	{
 		$_SESSION["admin_web"]=$_GET["admin_web"];
 	}
-	
-	require_once("conf/traduccion.php");
-	require_once("conf/funciones.php");
-	require_once("conf/conexion.php");
-	$link=Conectarse();
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +16,7 @@
 		<meta name="AUTHOR" content="jet"/>
 		<meta http-equiv="EXPIRES" content="Mon, 31 Dec 2054 00:00:01 PST"/>
 		<meta http-equiv="CHARSET" content="UTF-8"/>
-		<meta http-equiv="content-LANGUAGE" content="Español"/>
+		<meta http-equiv="content-LANGUAGE" content="Espaï¿½ol"/>
 		<meta http-equiv="VW96.OBJECT TYPE" content="Pag. Personal"/>
 		<meta name="RATING" content="General"/>
 		<meta name="REVISIT-AFTER" content="7 days"/>
@@ -57,29 +52,31 @@
 	{
 		$pagina=1;
 	}
-?>	
-
-	<body class="principal" onload="mueveReloj();">
-  
-<?php 
-	//Comprobar idioma del navegador cliente  
-	if ($_SERVER['HTTP_ACCEPT_LANGUAGE'] != ''){ 
+	
+	//Comprobar idioma del navegador cliente
+	if ($_SERVER['HTTP_ACCEPT_LANGUAGE'] != ''){
 		// Miramos que idiomas ha definido:
 		$idiomas = explode(",", $_SERVER['HTTP_ACCEPT_LANGUAGE']); # Convertimos HTTP_ACCEPT_LANGUAGE en array
-		/* Recorremos el array hasta que encontramos un idioma del visitante que coincida con los idiomas en que está disponible nuestra web */
+		/* Recorremos el array hasta que encontramos un idioma del visitante que coincida con los idiomas en que estï¿½ disponible nuestra web */
 		if (substr($idiomas[0], 0, 2) == "es"){$idioma = 1;}
 		else if (substr($idiomas[0], 0, 2) == "en"){$idioma = 2;}
 		else if (substr($idiomas[0], 0, 2) == "ca"){$idioma = 3;}
 		//else if (substr($idiomas[0], 0, 2) == "gl"){$idioma = 4;}
 		else {$idioma=1;}
-	}	
-
+	}
+	
 	if (!isset($_SESSION["idiomapagina"]))
 	{
 		$_SESSION["idiomapagina"]=$idioma;
 	}
+	
+	require_once("conf/traduccion.php");
+	require_once("conf/funciones.php");
+	require_once("conf/conexion.php");
+	$link=Conectarse();
+?>	
 
-?>
+	<body class="principal" onload="mueveReloj();">
 
 		<table border="0" width="100%">
 			<tr>
@@ -121,6 +118,8 @@
 			Idioma: substr($idiomas[0], 0, 2)
 		
 			*/
+		
+			
 			//Contador de visitas
 			$query="select * from contador";
 			$qcontador=mysqli_query ($link, $query);
@@ -128,7 +127,7 @@
 		  
 			$contador = $rowcontador["Contador"];
 		  
-			//Insertar visitas únicas
+			//Insertar visitas unicas
 			$query="select * from visitas where IP=\"".getRealIP()."\" and Fecha=\"".date("Y-m-d")."\" and Idioma=".$_SESSION["idiomapagina"];
 			$qvisitas=mysqli_query ($link, $query);
 			
@@ -136,13 +135,16 @@
 			$total_registros=mysqli_num_rows($qvisitas);
 			if ($total_registros==0)
 			{
-				//Query para insertar los valores en la base de datos
-				$query="insert into visitas (IP,Hora,Fecha,Idioma) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["idiomapagina"].")";
-				mysqli_query($link, $query);
-				
-				$contador++;
-				$query="update contador set contador=".$contador." where IdContador=1";
-				mysqli_query ($link, $query);
+				if (!isset($_SESSION["admin_web"]))
+				{
+					//Query para insertar los valores en la base de datos
+					$query="insert into visitas (IP,Hora,Fecha,Idioma) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["idiomapagina"].")";
+					mysqli_query($link, $query);
+					
+					$contador++;
+					$query="update contador set contador=".$contador." where IdContador=1";
+					mysqli_query ($link, $query);
+				}
 			}
 		?>
 			
