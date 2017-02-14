@@ -5,7 +5,7 @@
     }
     
 	unset($_SESSION["pagina"]);
-	$_SESSION["pagina"]=9;
+	$_SESSION["pagina"]=7;
 	
 	require_once($_SESSION["ruta"]."conf/traduccion.php");
 	require_once($_SESSION["ruta"]."conf/funciones.php");

@@ -19,10 +19,10 @@
 
 	//Mando el mensaje a mi direcci�n de email
 	//En el campo De aparecer� javi@calendario
-    $email2="hospitauro@gmail.com";
+    $email2="puntairesmari@gmail.com";
     $asunto="Sugerencias";
     $cuerpo="Nombre: ".$nombre."<br>Email: ".$email."<br>Mensaje: ".$mensaje;
-	mail($email2,$asunto,$cuerpo,"From: Contacta Hospi Tauro");
+	mail($email2,$asunto,$cuerpo,"From: Contacta Puntaires Mari");
 ?>
     <table border="0" width="100%">
 		<tr>

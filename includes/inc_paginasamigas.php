@@ -1,8 +1,8 @@
 <table border="0" width="100%">
 	<tr>
 		<td align="center">
-			<a href="<?print($_SESSION["rutaservidor"]);?>paginas/paginas_amigas.php?p=1" target="_blank" border="0">
-					<img src="<?print($_SESSION["rutaservidor"]);?>imagenes/latalanquera.jpg" alt="La Talanquera" title="La Talanquera" border="0"/>
+			<a href="<?= $_SESSION["rutaservidor"] ?>paginas/paginas_amigas.php?p=1" target="_blank" border="0">
+					<img src="<?= $_SESSION["rutaservidor"] ?>imagenes/hospitalense.png" alt="ATC Hospitalense" title="ATC Hospitalense" border="0"/>
 			</a>
 		</td>
 	</tr>
@@ -11,6 +11,7 @@
 			&nbsp;
 		</td>
 	</tr>
+	<!-- 
 	<tr>
 		<td align="center">
 			<a href="<?print($_SESSION["rutaservidor"]);?>paginas/paginas_amigas.php?p=2" target="_blank" border="0">
@@ -42,4 +43,5 @@
 			</a>
 		</td>
 	</tr>
+	-->
 </table>			

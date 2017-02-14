@@ -1,15 +1,12 @@
 body.principal
 {
-	background-color:rgb(0,0,0);
+	/*background-color: rgb(255,255,255);*/
+	background-color: #99C9FF;
 	font-family : Comic Sans MS, sans-serif;
 	font-size : 14pt; 
 	color : red; 
 }
 
-body.presentacion
-{
-	background-color:rgb(0,0,0);
-}
 
 a:link { font-family:Verdana; color: red; text-decoration: none;} 
 a:visited { font-family:Verdana; color: red; text-decoration: none;}
@@ -43,16 +40,6 @@ input.boton
 	border-left-width: 1px
 }
 
-table.presentacion
-{
-	empty-cells: show;
-	border-style:none ; 
-	color : red; 
-	font-family : Comic Sans MS, sans-serif;
-	font-size : 14pt; 
-	text-align : left;
-}
-
 table.calendario
 {
 	border-color:navy;
@@ -81,7 +68,8 @@ h1.contador
 input.reloj
 {
 	border-style:none ; 
-	background-color : rgb(0,0,0); 
+	/*background-color: rgb(255,255,255);*/
+	background-color: #99C9FF;
 	color : red; 
 	font-family : Comic Sans MS, sans-serif;
 	font-size : 14pt; 
@@ -131,10 +119,6 @@ ul#tabnav a:hover {
 }
 #tabnav .inactivo {}
 
-td#intertoto a:link { font-family:Verdana; color: blue; font-size:12px; } 
-td#intertoto a:visited { font-family:Verdana; color: blue; font-size:12px; }
-td#intertoto a:hover { font-family:Verdana; font-weight: bold; color: blue; background-color: rgb(197,214,232); font-size:12px;}
-
 /* Fin de Pestañas*/
 /*---------------------------------------------------------------------------------------------------------------*/
 
@@ -148,3 +132,33 @@ input.error_contactar
 	font-size : 10pt; 
 	text-align : left;
 }
+
+/*Inicio Administración*/
+
+body.administracion
+{
+	background-image:url();
+	background-color: #FFFFFF;
+	font-family : Verdana;
+	font-size : 10pt; 
+}
+
+table.admin
+{
+	width: 100%;
+}
+
+table.admin td
+{
+	background-color: red;
+}
+
+table.admin th
+{
+	background-color: blue;
+}
+
+a.admin:link { font-family:Verdana; color: yellow; text-decoration: none; } 
+a.admin:visited { font-family:Verdana; color: yellow }
+a.admin:hover { font-family:Verdana; font-weight: bold }
+/*Fin Administración*/

@@ -119,9 +119,14 @@
 					$rowprovincia=mysqli_fetch_array($qprovincia, MYSQLI_BOTH);
 					
 					$dias=tratarDiaEncuentro($encuentros["Dia"], $encuentros["Mes"], $encuentros["Anyo"]);
+					
+					$desc = $rowmunicipio["Municipio"]." (".$rowprovincia["Provincia"].")";
+					if ($encuentros["Descripcion"] != null){
+						$desc .= " --- ".$encuentros["Descripcion"];
+					}
 ?>				
 				<tr>
-					<td><a href="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/encuentros.php?idencuentro=<?= $encuentros["IdEncuentro"] ?>&opcion=<?= $opcion ?>','principal')"><?= cambiarAcentos($rowmunicipio["Municipio"]) ?> (<?= cambiarAcentos($rowprovincia["Provincia"]) ?>)</a></td>
+					<td><a href="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/encuentros.php?idencuentro=<?= $encuentros["IdEncuentro"] ?>&opcion=<?= $opcion ?>','principal')"><?= cambiarAcentos($desc) ?></a></td>
 					<td><?= $dias ?></td>
 				</tr>
 <?php 				
@@ -154,7 +159,7 @@
 	}
 	elseif ($dia)
 	{
-		$tmp = $_SESSION["IdsFiestasMes"];
+		$tmp = $_SESSION["IdsEncuentrosMes"];
 
 		$fiestasmes = explode(", ",$tmp[$dia][0]);
 		$tamany = sizeof($fiestasmes)-1;
@@ -296,7 +301,7 @@
 		for ($x=1;$x<=31;$x++)
 		{
 			$fechasfiestames[$x][0]=0;
-			$idfiestames[$x][0]=0;
+			$idencuentromes[$x][0]=0;
 		}
     
 		//$idfiestames = "";
@@ -304,11 +309,11 @@
 		{
 			$encuentrosDia = $encuentros["Dia"];
 			$fechasfiestames[$encuentrosDia][0]=1;
-			$idfiestames[$encuentrosDia][0].=$encuentros["IdEncuentro"].", ";
+			$idencuentromes[$encuentrosDia][0].=$encuentros["IdEncuentro"].", ";
 		}
 	
-		unset($_SESSION["IdsFiestasMes"]);
-		$_SESSION["IdsFiestasMes"] = $idfiestames;
+		unset($_SESSION["IdsEncuentrosMes"]);
+		$_SESSION["IdsEncuentrosMes"] = $idencuentromes;
 ?>		
 		<table class="calendario" align="center" border="0" cellpadding="1" cellspacing="1">
 			<tr>

@@ -20,7 +20,7 @@ if (document.layers) {
 document.onmousedown=click;
 
 
-var texto_estado = "                          Hospi Tauro"
+var texto_estado = "                          Puntaires Mari"
 var posicion = 0
    
 //funcion para mover el texto de la barra de estado
@@ -74,66 +74,24 @@ function cargarPagina(pagina){
 	}
 	else if(pagina==3)
 	{
-		llamada_prototype('paginas/fiestas.php','principal');
+		llamada_prototype('paginas/encuentros.php','principal');
 	}
 	else if(pagina==4)
 	{
-		llamada_prototype('paginas/programa.php','ContTabul');
+		llamada_prototype('paginas/carteles.php','ContTabul');
 	}
 	else if(pagina==5)
 	{
-		llamada_prototype('paginas/fotos.php','ContTabul');
+		llamada_prototype('paginas/contactos.php','ContTabul');
 	}
-	else if(pagina==7)
+	else if(pagina==6)
 	{
 		llamada_prototype('paginas/paginas_amigas.php','principal');
 	}
-	else if(pagina==9)
+	else if(pagina==7)
 	{
 		llamada_prototype('paginas/contactar.php','principal');
 	}
-}
-
-function cargarPresentacion(menu)
-{
- 	var href=document.URL;
-  var URLBasica = href.split("/");
-  var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]+"/paginas/presentacion.php?menu="+menu;
-	GB_showCenter('Presentacion', href, 340, 300);
-}
-
-function cargarPresentacion2()
-{
-	var href=document.URL;
-  var URLBasica = href.split("/");
-  var URL = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]+"/paginas/presentacion2.php";
-  location.href=URL;
-	parent.GB.height = 480;
-	parent.GB.width = 600;
-	parent.GB.setFrameSize();
-	parent.GB.setWindowPosition();
-}
-
-function salirWeb()
-{
- 	parent.parent.location.href = "salir_web.php";
-}
-
-function salir()
-{
- 	parent.parent.location.href = "http://www.google.es";
- 	parent.parent.GB_hide();
-}
-
-function inicio()
-{
-	parent.parent.GB_hide();
-}
-
-function presentacion2Cargada()
-{
-	//Esperar 10 segundos para mostrar la pagina de inicio	
-	setTimeout("inicio()",10000);
 }
 
 function combo_comunidades()
@@ -170,29 +128,6 @@ function combo_provincias()
 		}
 	}
 	else objeto.options[0] = new Option('                 ', 0, false, false);
-}
-
-function cambio_foto(pagina,foto,cursor,idioma)
-{
-	var idfiesta = document.getElementById("IdFiesta");
-	var tipofoto1 = document.getElementById("TipoFotoN1");
-	var tipofoto2 = document.getElementById("TipoFotoN2");
-	var parametros='';
-	if (cursor!=0)
-	{
-		parametros='?cursor='+cursor+'&pagina='+pagina+'&IdFiesta='+idfiesta.value+'&IdTipoFotoN1='+tipofoto1.value+'&IdTipoFotoN2='+tipofoto2.value;
-	}
-	else
-	{
-		parametros='?pagina='+pagina+'&IdFiesta='+idfiesta.value+'&IdTipoFotoN1='+tipofoto1.value+'&IdTipoFotoN2='+tipofoto2.value;
-	}
-	
-	llamada_prototype('../includes/inc_pasarela.php'+parametros,'pasarela');
-	llamada_prototype('../includes/inc_foto_principal.php?IdFoto='+foto+'&IdFiesta='+idfiesta.value+'&IdTipoFotoN1='+tipofoto1.value+'&IdTipoFotoN2='+tipofoto2.value,'fotoprincipal');
-
-	animarboto(document.getElementById("anchorcerrar"), document.getElementById("btncerrar"), 'cerrar', 0, idioma);
-	animarboto(document.getElementById("anchor800"), document.getElementById("btn800"), '800x600', 0, idioma);
-	animarboto(document.getElementById("anchor1280"), document.getElementById("btn1280"), '1280x1024', 0, idioma);	
 }
 
 function llamada_prototype(URL,objetoDIV,metodo)
@@ -243,7 +178,7 @@ function centrarpopup(url, name, w, h)
 }
 
 /*--------------------------------------------------------------------------------------------------------------*/
-/*Pestañas*/
+/*Pestaï¿½as*/
 function CambiarEstilo(id) {
 	var elementosMenu = getElementsByClassName(document, "li", "activo");
 	for (k = 0; k< elementosMenu.length; k++) {
@@ -273,10 +208,10 @@ function getElementsByClassName(oElm, strTagName, strClassName){
     }
     return (arrReturnElements)
 }
-/*Fin de pestañas*/
+/*Fin de pestaï¿½as*/
 /*--------------------------------------------------------------------------------------------------------------*/
 
-/*Validación formulario de contacto*/
+/*Validaciï¿½n formulario de contacto*/
 function validar(ok) {
 	if (ok==1)
 	{
@@ -321,8 +256,16 @@ function cargarCambioIdioma(idioma)
 	var cambiandoidioma = document.getElementById("cambiandoIdioma").value;
 
  	var href=document.URL;
-  var URLBasica = href.split("/");
-  var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]+"/includes/inc_cambio_idioma.php?idioma="+idioma;
+ 	var URLBasica = href.split("/");
+ 	var href = "";
+
+ 	if (URLBasica.length == 6){
+ 		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]+"/"+URLBasica[4];
+ 	} else {
+ 		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]
+ 	}
+
+ 	href = href+"/includes/inc_cambio_idioma.php?idioma="+idioma;
 	return GB_showCenter(cambiandoidioma, href, 120, 300);
 }
 
@@ -330,10 +273,16 @@ function cambioidioma()
 {
 	parent.parent.GB_hide();
 	var direccion=document.URL;
-  var URLBasica = direccion.split("/");
-  if (URLBasica[3]=="#")var direccion = URLBasica[0]+"//"+URLBasica[2];
-  else var direccion = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3];
-	parent.parent.location.href=direccion;
+	var URLBasica = direccion.split("/");
+  	var href = "";
+
+	if (URLBasica.length == 6){
+		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]+"/"+URLBasica[4];
+	} else {
+		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]
+	}
+	
+	parent.parent.location.href=href;
 }
 
 /******************************************************************************************************************/
@@ -374,7 +323,7 @@ function gestionCargaDatos(idSelectOrigen,admin)
 
 function cargaDatos(idSelectOrigen,destino)
 {
-	//Obtengo el año de busqueda
+	//Obtengo el aÃ±o de busqueda
 	if (document.getElementById("anyobuscador")!=null){
 		var anyoBuscar=document.getElementById("anyobuscador").value;
 		var inicio=anyoBuscar.indexOf("ano=");
@@ -526,20 +475,6 @@ function cargaDatosFotos(idSelectOrigen,foto)
 }
 //Buscador Fiestas (Comunidades -> Provincias -> Municipios)
 /******************************************************************************************************************/
-
-function busquedaFotos(IdFiesta)
-{
-	llamada_prototype('paginas/fiestas.php?busquedafotovideo=1&idfiesta='+IdFiesta,'principal');
-	sleep(1000);
-	llamada_prototype('paginas/fotos.php?idfiesta='+IdFiesta,'ContTabul');
-}
-
-function busquedaVideos(IdFiesta)
-{
-	llamada_prototype('paginas/fiestas.php?busquedafotovideo=2&idfiesta='+IdFiesta,'principal');
-	sleep(1000);
-	llamada_prototype('paginas/videos.php?idfiesta='+IdFiesta,'ContTabul');
-}
 
 //http://monjes.org/desarrollo-web/5396-funcion-sleep-en-javascript.html
 function sleep(milliseconds) {

@@ -34,6 +34,17 @@
 		
 		<link rel="stylesheet" href="css/plantilla.css">
 
+		
+		<link rel="stylesheet" href="css/gb_styles.css">
+		
+		<script type="text/javascript">
+			var GB_ROOT_DIR = "js/greybox/";
+			var GB_IMATGES_DIR = "imagenes/greybox/";
+			var SALT = 0;
+		</script>
+		<script type="text/javascript" src="js/greybox/AJS.js"></script>
+		<script type="text/javascript" src="js/greybox/AJS_fx.js"></script>
+		<script type="text/javascript" src="js/greybox/gb_scripts.js"></script>
 </head>
 <?php
 

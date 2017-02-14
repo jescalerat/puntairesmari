@@ -64,7 +64,7 @@
 		define ('_RESPUESTA1','Gracias por dar su opinión');
 		define ('_RESPUESTA2','En menos de 24 horas me pondré en contacto con usted para resolver sus dudas');
 		define ('_OTRACONSULTA','Otra consulta');
-		define ('_CONTACTAR','Si hay algún problema con el formulario envíeme un mensaje a esta dirección <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. Gracias');
+		define ('_CONTACTAR','Si hay algún problema con el formulario envíeme un mensaje a esta dirección <a href=mailto:puntairesmari@gmail.com>puntairesmari@gmail.com</a>. Gracias');
 		
 		//Días de la semana
 		define ('_LUNES','Lunes'); 
@@ -148,14 +148,14 @@
 		define ('_MUNICIPIOS','Towns');
 	
 		//Pestañas Encuentros
-		define ('_CARTELES','Carteles');
-		define ('_CONTACTOS','Contactos');
+		define ('_CARTELES','Posters');
+		define ('_CONTACTOS','Contacts');
 		
 		//Pestañas Encuentros Carteles
-		define ('_SINCARTEL','Cartel no disponible');
+		define ('_SINCARTEL','Poster not available');
 	
 		//Pestañas Encuentros Contactos
-		define ('_SINCONTACTO','Contactos no disponibles');
+		define ('_SINCONTACTO','Contacts not available');
 		
 		//Contacta
 		define ('_TITULO','Message to webmaster'); 
@@ -171,7 +171,7 @@
 		define ('_RESPUESTA1','Thanks to give its opinion');
 		define ('_RESPUESTA2','In less than 24 hours I will put myself in contact with you to solve its doubts');
 		define ('_OTRACONSULTA','Any question');
-		define ('_CONTACTAR','If you have some problem with the form send me a message to this direction <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. Thanks you');
+		define ('_CONTACTAR','If you have some problem with the form send me a message to this direction <a href=mailto:puntairesmari@gmail.com>puntairesmari@gmail.com</a>. Thanks you');
 		
 		//Días de la semana
 		define ('_LUNES','Monday'); 
@@ -278,7 +278,7 @@
 		define ('_RESPUESTA1','Gràcies per donar la seva opinió');
 		define ('_RESPUESTA2','En menys de 24 hores em posaré en contacte amb vostè per resoldre els seus dubtes');
 		define ('_OTRACONSULTA','Una altra consulta');
-		define ('_CONTACTAR','Si hi ha algun problema amb el formulari envieu un missatge a aquesta adreça <a href=mailto:hospitauro@gmail.com>hospitauro@gmail.com</a>. Gràcies');
+		define ('_CONTACTAR','Si hi ha algun problema amb el formulari envieu un missatge a aquesta adreça <a href=mailto:puntairesmari@gmail.com>puntairesmari@gmail.com</a>. Gràcies');
 		
 		//Días de la semana
 		define ('_LUNES','Dilluns'); 

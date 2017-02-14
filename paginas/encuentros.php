@@ -22,9 +22,19 @@
 		
 <?php 		
 	
-	$dia = $_GET["dia"];
-	$mes = $_GET["mes"];
-	$ano = $_GET["ano"];
+	$dia = "";
+	$mes = "";
+	$ano = "";
+	if(isset($_GET["dia"])){
+		$dia = $_GET["dia"];
+	}
+	if(isset($_GET["mes"])){
+		$mes = $_GET["mes"];
+	}
+	if(isset($_GET["ano"])){
+		$ano = $_GET["ano"];
+	}
+
 	$idencuentro = $_GET["idencuentro"];
 	
 	$observaciones=$idencuentro.": ".$dia."-".$mes."-".$ano;

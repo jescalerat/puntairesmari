@@ -1,5 +1,7 @@
 var GB_CURRENT=null;
 GB_hide = function(cb){GB_CURRENT.hide(cb);};
+this.root_dir=GB_ROOT_DIR;
+this.imgdir=GB_IMATGES_DIR;
 GreyBox = new AJS.Class({init:function(_2)
 {
 	this.use_fx=AJS.fx;

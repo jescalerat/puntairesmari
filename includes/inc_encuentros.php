@@ -29,15 +29,24 @@
 		$busquedaFotoVideo = $_GET["busquedafotovideo"];
 	}
 
-	$dia = $_GET["dia"];
-	$mes = $_GET["mes"];
-	$ano = $_GET["ano"];
-	
-	$idfiestames = "";
-	if (isset($_GET["idfiestasmes"])){
-		$idfiestames = $_GET["idfiestasmes"];
+	$dia = "";
+	$mes = "";
+	$ano = "";
+	if(isset($_GET["dia"])){
+		$dia = $_GET["dia"];
 	}
-	$tmp = stripslashes($idfiestames);
+	if(isset($_GET["mes"])){
+		$mes = $_GET["mes"];
+	}
+	if(isset($_GET["ano"])){
+		$ano = $_GET["ano"];
+	}
+	
+	$idencuentromes = "";
+	if (isset($_GET["idencuentrosmes"])){
+		$idencuentromes = $_GET["idencuentrosmes"];
+	}
+	$tmp = stripslashes($idencuentromes);
     $tmp = urldecode($tmp);
     $tmp = unserialize($tmp); 
 	$tmp = serialize($tmp);
@@ -58,4 +67,4 @@
 ?>
 	</div>	
 </form>
-<a href="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?dia=<?= $dia ?>&mes=<?= $mes ?>&ano=<?= $ano ?>&idfiesta=<?= $tmp ?>','principal');"><?= _VOLVER ?></a>
+<a href="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?dia=<?= $dia ?>&mes=<?= $mes ?>&ano=<?= $ano ?>&idencuentro=<?= $tmp ?>','principal');"><?= _VOLVER ?></a>

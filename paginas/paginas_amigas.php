@@ -1,32 +1,36 @@
-<?
-	session_start();
+<?php
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+    
 	unset($_SESSION["pagina"]);
-	$_SESSION["pagina"]=7;
-
-	if (!isset($link))
-	{
-	    require_once($_SESSION["ruta"]."conf/conexion.php");
-	    $link=Conectarse();
-	}
-
+	$_SESSION["pagina"]=6;
+	
+	require_once($_SESSION["ruta"]."conf/traduccion.php");
 	require_once($_SESSION["ruta"]."conf/funciones.php");
-  $link=Conectarse();
-	$paginaver = $_GET["p"];
+	require_once($_SESSION["ruta"]."conf/conexion.php");
+	$link=Conectarse();
+
+	$paginaver = 0;
+	if (isset($_GET["p"])){
+		$paginaver = $_GET["p"];
+	}
 
 	if ($paginaver!=0)
 	{
 		if (!isset($_SESSION["admin_web"]))
 		{
 			$observaciones=$paginaver;
-	  	//Query para insertar los valores en la base de datos
-	    $query="insert into paginas_vistas (IP,Hora,Fecha,Pagina,Observaciones) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["pagina"].",\"".$observaciones."\")";
-			mysql_query($query,$link);
+	  		//Query para insertar los valores en la base de datos
+	    	$query="insert into paginas_vistas (IP,Hora,Fecha,Pagina,Observaciones) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["pagina"].",\"".$observaciones."\")";
+			mysqli_query($link, $query);
 		}	
 		
 		if ($paginaver == 1)
 		{
-			$web = "http://www.latalanquera.com";
-		}
+			$web = "http://www.hospitalense.es";
+		}/*
 		else if ($paginaver == 2)
 		{
 			$web = "http://www.bousalcarrer.com";
@@ -54,28 +58,32 @@
 		else if ($paginaver == 187)
 		{
 			$web = "http://aretecup.areteocio.com";	
-		}	
+		}	*/
 		
 		header("Location:".$web);
 	}
 	else
 	{
-		print ("<table border=0 width=100%>");
-		print ("<tr>");
-			print ("<td>");
-					require_once($_SESSION["ruta"]."includes/inc_paginasamigas.php");
-		print ("</table>");
-		
+?>
+	<table border="0" width="100%">
+		<tr>
+			<td>
+				<?php require_once($_SESSION["ruta"]."includes/inc_paginasamigas.php"); ?>
+			</td>
+		</tr>
+	</table>		
+
+<?php 
 		if (!isset($_SESSION["admin_web"]))
 		{
 			$observaciones=$paginaver;
-	  	//Query para insertar los valores en la base de datos
-	    $query="insert into paginas_vistas (IP,Hora,Fecha,Pagina,Observaciones) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["pagina"].",\"".$observaciones."\")";
-			mysql_query($query,$link);
+		  	//Query para insertar los valores en la base de datos
+		    $query="insert into paginas_vistas (IP,Hora,Fecha,Pagina,Observaciones) values (\"".getRealIP()."\",\"".date("H:i:s")."\",\"".date("Y-m-d")."\",".$_SESSION["pagina"].",\"".$observaciones."\")";
+			mysqli_query($link, $query);
 		}
 	}
 ?>
 
 <form name="buscapagina">
-	<input type="hidden" name="paginaactual" id="paginaactual" value="<?print ($_SESSION["pagina"]);?>">
+	<input type="hidden" name="paginaactual" id="paginaactual" value="<?= $_SESSION["pagina"] ?>">
 </form>
