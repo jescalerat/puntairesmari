@@ -4,11 +4,26 @@ Autores: Javier Escalera.
 Nombre: bajar_fichero.php
 Explicación: página que sirve para descargar un fichero. Aparece un gestor de descarga.
 */
-  session_start();
+  	session_start();
 	unset($_SESSION["pagina"]);
 	$_SESSION["pagina"]=41;
 	
-	require_once($_SESSION["ruta"]."conf/funciones.php");
+	$esAdmin = strripos($_SESSION["ruta"], "admin");
+		
+	$ruta = $_SESSION["ruta"];
+		
+	if ($esAdmin){
+		$arrRura = explode("/", $_SESSION["ruta"]);
+	
+		$cuentaArray = count($arrRura) - 2;
+	
+		$ruta = "";
+		for ($i = 0; $i < $cuentaArray; $i++) {
+			$ruta .= $arrRura[$i]."/";
+		}
+	}
+	
+	require_once($ruta."conf/funciones.php");
 	 
 	//Encontrado en: http://www.el-hacker.com/foro/index.php/topic,15152.0
 	$f = "../programas/".$_GET["f"];

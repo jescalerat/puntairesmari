@@ -10,9 +10,25 @@ $listadoSelects=array(
 
 $selectDestino=$_GET["select"]; $opcionSeleccionada=$_GET["opcion"];
 
-require_once($_SESSION["ruta"]."conf/conexion.php");
-require_once($_SESSION["ruta"]."conf/traduccion.php");
-require_once($_SESSION["ruta"]."conf/funciones.php");
+$esAdmin = strripos($_SESSION["ruta"], "admin");
+
+$ruta = $_SESSION["ruta"];
+
+if ($esAdmin){
+	$arrRura = explode("/", $_SESSION["ruta"]);
+	
+	$cuentaArray = count($arrRura) - 2;
+	
+	$ruta = "";
+	for ($i = 0; $i < $cuentaArray; $i++) {
+		$ruta .= $arrRura[$i]."/";
+	}
+}
+
+require_once($ruta."conf/conexion.php");
+require_once($ruta."conf/traduccion.php");
+require_once($ruta."conf/funciones.php");
+
 $link=Conectarse();
 $tabla=$listadoSelects[$selectDestino];
 

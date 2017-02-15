@@ -7,21 +7,36 @@
 	unset($_SESSION["pagina"]);
 	$_SESSION["pagina"]=2;
 	
-	require_once($_SESSION["ruta"]."conf/traduccion.php");
-	require_once($_SESSION["ruta"]."conf/funciones.php");
-	require_once($_SESSION["ruta"]."conf/conexion.php");
+	$esAdmin = strripos($_SESSION["ruta"], "admin");
+	
+	$ruta = $_SESSION["ruta"];
+	
+	if ($esAdmin){
+		$arrRura = explode("/", $_SESSION["ruta"]);
+	
+		$cuentaArray = count($arrRura) - 2;
+	
+		$ruta = "";
+		for ($i = 0; $i < $cuentaArray; $i++) {
+			$ruta .= $arrRura[$i]."/";
+		}
+	}
+	
+	require_once($ruta."conf/traduccion.php");
+	require_once($ruta."conf/funciones.php");
+	require_once($ruta."conf/conexion.php");
 	$link=Conectarse();
 ?>	
 	<table border="0" width="100%">
 		<tr>
 			<td width="70%" valign="top">
 				<div id="calendario">
-					<?php require_once($_SESSION["ruta"]."includes/inc_calendario.php"); ?>
+					<?php require_once($ruta."includes/inc_calendario.php"); ?>
 				</div>
 			</td>
 			<td valign="top">
 				<div id="buscador">
-					<?php require_once($_SESSION["ruta"]."includes/inc_calendario_buscador.php"); ?>
+					<?php require_once($ruta."includes/inc_calendario_buscador.php"); ?>
 				</div>
 			</td>
 		</tr>

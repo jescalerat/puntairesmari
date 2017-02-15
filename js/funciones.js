@@ -130,11 +130,16 @@ function combo_provincias()
 	else objeto.options[0] = new Option('                 ', 0, false, false);
 }
 
-function llamada_prototype(URL,objetoDIV,metodo)
+function llamada_prototype(URL,objetoDIV,metodo,formulario)
 {
 	if (metodo == 1)
 	{
 		var pars = Form.serialize('contactar');
+		var myAjax = new Ajax.Updater(objetoDIV, URL, {asynchronous:true, method:'post', parameters:pars }); 
+	}
+	else if (metodo == 2)
+	{
+		var pars = Form.serialize(formulario);
 		var myAjax = new Ajax.Updater(objetoDIV, URL, {asynchronous:true, method:'post', parameters:pars }); 
 	}
 	else

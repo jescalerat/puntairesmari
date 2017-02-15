@@ -32,6 +32,22 @@
 		
 		<link rel="stylesheet" href="../css/plantilla.css">
 		
+		<script LANGUAGE="JavaScript">
+			function ejecutarAccion(url)
+			{
+				var formulario = "";
+				var result = url.indexOf("lugar");
+				if (result != -1){
+					formulario = "encuentros";
+				}
+				result = url.indexOf("contacto");
+				if (result != -1){
+					formulario = "contactos";
+				}
+				
+				llamada_prototype(url,'principal', 2, formulario);
+			}
+		</script>
 	</head>
 	<body class="administracion">
 	<?php

@@ -63,7 +63,21 @@
 	</ul>
 	<div id="ContTabul">
 <?php
-		require_once($_SESSION["ruta"]."includes/inc_carteles.php");
+		$esAdmin = strripos($_SESSION["ruta"], "admin");
+			
+		$ruta = $_SESSION["ruta"];
+			
+		if ($esAdmin){
+			$arrRura = explode("/", $_SESSION["ruta"]);
+				
+			$cuentaArray = count($arrRura) - 2;
+				
+			$ruta = "";
+			for ($i = 0; $i < $cuentaArray; $i++) {
+				$ruta .= $arrRura[$i]."/";
+			}
+		}
+		require_once($ruta."includes/inc_carteles.php");
 ?>
 	</div>	
 </form>

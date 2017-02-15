@@ -48,18 +48,16 @@
 		
 		<table border="0" width="100%">
 			<tr>
-				<td><a href="index.php">Indice</a></td>
-				<td><a href="gestionar_contactos.php?IdEncuentro=<?= $idEncuentroInsert ?>">Otro contacto</a></td>
-				<td><a href="gestionar_lugar.php">Otro lugar</a></td>
+				<td><a href="#" onclick="llamada_prototype('gestionar_contactos.php?IdEncuentro=<?= $idEncuentroInsert ?>','principal');">Otro Contacto</a></td>
+				<td><a href="#" onclick="llamada_prototype('gestionar_lugar.php','principal');">Otro lugar</a></td>
 			</tr>
 		</table>
 <?php 
-		mysqli_free_result($qresultado);
 	}
 	else if (!isset($idencuentro))
 	{
 ?>		
-		<form name="contactos" id="contactos" method="post">
+		<form action="javascript:llamada_prototype('gestionar_contactos.php','principal',2);" method="post" name="contactos" id="contactos">
 <?php 			
 			$query="select e.idencuentro, concat(e.Dia,\"-\",e.Mes,\"-\",e.Anyo) as dia, m.municipio from encuentros e, municipios m where e.IdMunicipio=m.IdMunicipio order by m.Municipio";
 			$q=mysqli_query ($link, $query);
@@ -84,25 +82,23 @@
 				Contacto: <input tipe="text" id="contacto" name="contacto" size="30" maxlength="100"/>
 			</p>
 			<p>
-				<input type="submit" name="enviar" id="enviar" value="Guardar"/>
+				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_contactos.php');"/>
 			</p>
 		</form>
-		<p><a href="index.php">Indice</a></p>
 <?php 		
 	}
 	else
 	{
 ?>
-		<form name="contactos" id="contactos" method="post">
+		<form action="javascript:llamada_prototype('gestionar_contactos.php','principal',2);" method="post" name="contactos" id="contactos">
 			<input type="hidden" id="idEncuentro" name="idEncuentro" value="<?= $idencuentro ?>">
 			<p>
 				Contacto: <input tipe="text" id="contacto" name="contacto" size="30" maxlength="100"/>
 			</p>
 			<p>
-				<input type="submit" name="enviar" id="enviar" value="Guardar"/>
+				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_contactos.php');"/>
 			</p>
 		</form>
-		<p><a href="index.php">Indice</a></p>
 <?php 		
 	}
 ?>

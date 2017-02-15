@@ -7,15 +7,30 @@
 	unset($_SESSION["pagina"]);
 	$_SESSION["pagina"]=5;
 	
-	require_once($_SESSION["ruta"]."conf/traduccion.php");
-	require_once($_SESSION["ruta"]."conf/funciones.php");
-	require_once($_SESSION["ruta"]."conf/conexion.php");
+	$esAdmin = strripos($_SESSION["ruta"], "admin");
+	
+	$ruta = $_SESSION["ruta"];
+	
+	if ($esAdmin){
+		$arrRura = explode("/", $_SESSION["ruta"]);
+	
+		$cuentaArray = count($arrRura) - 2;
+	
+		$ruta = "";
+		for ($i = 0; $i < $cuentaArray; $i++) {
+			$ruta .= $arrRura[$i]."/";
+		}
+	}
+	
+	require_once($ruta."conf/traduccion.php");
+	require_once($ruta."conf/funciones.php");
+	require_once($ruta."conf/conexion.php");
 	$link=Conectarse();
 ?>
 		<table border="0" width="100%">
 			<tr>
 				<td>
-					<?php require_once($_SESSION["ruta"]."includes/inc_contactos.php"); ?>
+					<?php require_once($ruta."includes/inc_contactos.php"); ?>
 				</td>
 			</tr>
 		</table>

@@ -38,7 +38,7 @@
 						else
 						{
 ?>
-							<option value="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?ano=<?= $anos["anyo"] ?>','principal')"><?= $anos["anyo"] ?>							
+							<option value="javascript:llamada_prototype('<?= $_SESSION["rutaservidor"] ?>paginas/calendario.php?ano=<?= $anos["Anyo"] ?>','principal')"><?= $anos["Anyo"] ?>							
 <?php 
 						}
 					}

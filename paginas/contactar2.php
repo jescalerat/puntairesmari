@@ -1,6 +1,21 @@
 <?php
 	session_start();
-	require_once($_SESSION["ruta"]."conf/traduccion.php");
+	$esAdmin = strripos($_SESSION["ruta"], "admin");
+	
+	$ruta = $_SESSION["ruta"];
+	
+	if ($esAdmin){
+		$arrRura = explode("/", $_SESSION["ruta"]);
+	
+		$cuentaArray = count($arrRura) - 2;
+	
+		$ruta = "";
+		for ($i = 0; $i < $cuentaArray; $i++) {
+			$ruta .= $arrRura[$i]."/";
+		}
+	}
+	
+	require_once($ruta."conf/traduccion.php");
 
   	$nombre=$_POST['nombre'];
   	$email=$_POST['email'];
@@ -9,10 +24,10 @@
 	//Por si hay errores con el mail enviarlo a la base de datos
   	if (!isset($link))
 	{
-		require_once($_SESSION["ruta"]."conf/conexion.php");
+		require_once($ruta."conf/conexion.php");
 		$link=Conectarse();
 	}
-	require_once($_SESSION["ruta"]."conf/funciones.php");
+	require_once($ruta."conf/funciones.php");
 
 	$query="insert into correo (Nombre,Email,Mensaje,IP) values (\"".$nombre."\",\"".$email."\",\"".$mensaje."\",\"".getRealIP()."\")";
   	mysqli_query($link, $query);

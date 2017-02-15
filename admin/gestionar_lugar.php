@@ -12,6 +12,7 @@
 	
 	if (isset($_POST['op_comunidades'])&&isset($_POST['op_provincias'])&&isset($_POST['op_municipios']))
   	{
+  		print("Entra");
 	  	$comunidad=$_POST['op_comunidades'];
 	  	$provincia=$_POST['op_provincias'];
 	  	$municipio=$_POST['op_municipios'];
@@ -25,14 +26,14 @@
 		print ("<br>Descripcion: ".$descripcion);
 	  	print ("<br>Dia: ".$dia);
 	  	print ("<br>Mes: ".$mes);
-	  	print ("<br>A�o: ".$anyo);
+	  	print ("<br>Año: ".$anyo);
 	  	$idMunicipio=explode("@",$municipio);
 	  	$idcomunidad=$idMunicipio[2];
 	  	$idprovincia=$idMunicipio[1];
 	  	$idmunicipio=$idMunicipio[0];
 	  	
 	  	$query="insert into encuentros (IdMunicipio,Descripcion,Dia,Mes,Anyo) values (".$idmunicipio.",\"".$descripcion."\",\"".$dia."\",".$mes.",".$anyo.")";
-	    $qresultado=mysql_query ($query,$link);
+	    $qresultado=mysqli_query ($link, $query);
 	
 		if ($qresultado<>1)
 		{
@@ -40,14 +41,13 @@
 			print ("<p>Query error: ".$query."<br>");
 		}
 			
-		$idencuentro = mysql_insert_id();
+		$idencuentro = mysqli_insert_id($link);
 ?>		
 	<table border="0" width="100%">
 		<tr>
-			<td><a href="index.php">Indice</a></td>
-			<td><a href="gestionar_lugar.php">Otro lugar</a></td>
-			<td><a href="gestionar_cartel.php?IdEncuentro=<?= $idencuentro ?>&IdMunicipio=<?= $idmunicipio ?>">Insertar cartel</a></td>
-			<td><a href="gestionar_contactos.php?IdEncuentro=<?= $idencuentro ?>">Insertar contactos</a></td>
+			<td><a href="#" onclick="llamada_prototype('gestionar_lugar.php','principal');">Otro lugar</a></td>
+			<td><a href="#" onclick="llamada_prototype('gestionar_cartel.php?IdEncuentro=<?= $idencuentro ?>&IdMunicipio=<?= $idmunicipio ?>','principal');">Insertar cartel</a></td>
+			<td><a href="#" onclick="llamada_prototype('gestionar_contactos.php?IdEncuentro=<?= $idencuentro ?>','principal');">Insertar contactos</a></td>
 		</tr>
 	</table>
 <?php 	
@@ -55,7 +55,7 @@
 	else
 	{
 ?>
-		<form name="encuentros" id="encuentros" method="post">
+		<form action="javascript:llamada_prototype('gestionar_lugar.php','principal',2);" method="post" name="encuentros" id="encuentros">
 <?php 		
 			if(isset($_GET['IdMunicipio']))
 			{
@@ -105,7 +105,7 @@
 				Año: <input tipe="text" id="anyo" name="anyo" value="2017" size="30" maxlength="50"/>
 			</p>
 			<p>
-				<input type="submit" name="enviar" id="enviar" value="Guardar"/>
+				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_lugar.php');"/>
 			</p>
 		</form>
 		<p><a href="index.php">Indice</a></p>
