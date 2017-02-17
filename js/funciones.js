@@ -267,10 +267,11 @@ function cargarCambioIdioma(idioma)
  	if (URLBasica.length == 6){
  		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]+"/"+URLBasica[4];
  	} else {
- 		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]
+ 		var href = URLBasica[0]+"//"+URLBasica[2];
  	}
 
  	href = href+"/includes/inc_cambio_idioma.php?idioma="+idioma;
+
 	return GB_showCenter(cambiandoidioma, href, 120, 300);
 }
 
@@ -284,7 +285,7 @@ function cambioidioma()
 	if (URLBasica.length == 6){
 		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]+"/"+URLBasica[4];
 	} else {
-		var href = URLBasica[0]+"//"+URLBasica[2]+"/"+URLBasica[3]
+		var href = URLBasica[0]+"//"+URLBasica[2];
 	}
 	
 	parent.parent.location.href=href;

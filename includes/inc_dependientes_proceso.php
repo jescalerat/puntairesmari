@@ -58,15 +58,15 @@ echo "<option value='0'>".$opcioncombo."</option>";
 while($registro=mysqli_fetch_row($consulta))
 {
 	// Convierto los caracteres conflictivos a sus entidades HTML correspondientes para su correcta visualizacion
-	$registro[2]=htmlentities($registro[2]);
+	//$registro[2]=htmlentities($registro[2]);
 	
 /*	if (strcmp("provincias",$tabla)==0){$registro[2]=htmlentities($registro[2]);}
 	else if (strcmp("municipios",$tabla)==0){$registro[3]=htmlentities($registro[3]);}*/
 	// Imprimo las opciones del select
 	//echo "<option value='".$registro[0]."@".$registro[1]."'>".$registro[2]."</option>";
 	
-	if (strcmp("provincias",$tabla)==0)echo "<option value='".$registro[0]."@".$registro[1]."'>".$registro[2]."</option>";
-	else if (strcmp("municipios",$tabla)==0)echo "<option value='".$registro[0]."@".$registro[1]."@1'>".$registro[2]."</option>";
+	if (strcmp("provincias",$tabla)==0)echo "<option value='".$registro[0]."@".$registro[1]."'>".cambiarAcentos($registro[2])."</option>";
+	else if (strcmp("municipios",$tabla)==0)echo "<option value='".$registro[0]."@".$registro[1]."@1'>".cambiarAcentos($registro[2])."</option>";
 }			
 echo "</select>";
 

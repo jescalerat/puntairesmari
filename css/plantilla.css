@@ -126,7 +126,7 @@ ul#tabnav a:hover {
 input.error_contactar
 {
 	border-style:none ; 
-	background-color : rgb(0,0,0); 
+	background-color: #99C9FF; 
 	color : red; 
 	font-family : Verdana;
 	font-size : 10pt; 

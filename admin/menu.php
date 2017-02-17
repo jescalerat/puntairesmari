@@ -69,5 +69,11 @@
 			<a class="admin" href="#" onclick="llamada_prototype('comprobar_correo.php','principal');">Correo</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			&nbsp;
+			<a class="admin" href="#" onclick="llamada_prototype('info.php','principal');">PHP Info</a>
+		</td>
+	</tr>
 </table>
 Contador: <?= $contador ?>

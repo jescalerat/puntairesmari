@@ -32,12 +32,58 @@
 	$query="insert into correo (Nombre,Email,Mensaje,IP) values (\"".$nombre."\",\"".$email."\",\"".$mensaje."\",\"".getRealIP()."\")";
   	mysqli_query($link, $query);
 
-	//Mando el mensaje a mi direcci�n de email
-	//En el campo De aparecer� javi@calendario
+	//Mando el mensaje a mi dirección de email
+	//En el campo De aparecerá javi@calendario
     $email2="puntairesmari@gmail.com";
     $asunto="Sugerencias";
-    $cuerpo="Nombre: ".$nombre."<br>Email: ".$email."<br>Mensaje: ".$mensaje;
-	mail($email2,$asunto,$cuerpo,"From: Contacta Puntaires Mari");
+    $cuerpo="Nombre: ".$nombre."\r\n Email: ".$email."\r\n Mensaje: ".$mensaje;
+	//mail($email2,$asunto,$cuerpo,"From: Contacta Puntaires Mari");
+	
+    //incluimos la clase PHPMailer
+    require_once('../conf/PHPMailer/class.phpmailer.php');
+    
+    //instancio un objeto de la clase PHPMailer
+	$correo = new PHPMailer();
+	
+	$correo->SMTPDebug = 3;
+	
+	$correo->IsSMTP();
+	
+	$correo->SMTPAuth = true;
+	
+	$correo->SMTPSecure = 'tls';
+	
+	$correo->Host = "smtp.gmail.com";
+	
+	$correo->Port = 587;
+	
+	$correo->Username = "puntairesmari@gmail.com";
+	
+	$correo->Password   = "torres2008";
+	
+	//$correo->SetFrom("puntairesmari@gmail.com", "Mi Codigo PHP");
+	$correo->SetFrom($email2, "Sugerencias");
+	
+	//$correo->AddReplyTo("puntairesmari@gmail.com","Mi Codigo PHP");
+	$correo->AddReplyTo($email2, "Sugerencias");
+	
+	//$correo->AddAddress("destino@correo.com", "Jorge");
+	$correo->AddAddress($email, $nombre);
+	
+	//$correo->Subject = "Mi primero correo con PHPMailer";
+	$correo->Subject = $asunto;
+	
+	//$correo->MsgHTML("Mi Mensaje en <strong>HTML</strong>");
+	$correo->MsgHTML($cuerpo);
+	
+	//$correo->AddAttachment("images/phpmailer.gif");
+	
+	if(!$correo->Send()) {
+	  echo "Hubo un error: " . $correo->ErrorInfo;
+	} else {
+	  echo "Mensaje enviado con exito.";
+	}
+
 ?>
     <table border="0" width="100%">
 		<tr>

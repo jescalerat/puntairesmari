@@ -1,9 +1,9 @@
 <?php
-	session_start();
-	/*if (!isset($_SESSION['registrado']))
+  	session_start();
+  	if (!isset($_SESSION['registrado']))
 	{
-		header("Location:login.php?abrirpagina=1");	
-	}*/
+		header("Location:login.php");	
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,9 +58,11 @@
 		$ruta = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], '/'));
 		$_SESSION["ruta"] = $ruta.="/";
 	?>
+
 	<table border="0" width="100%">
 		<tr>
 			<td width="15%" valign="top">
+				<center><h2 class="admin"><?= $_SESSION['nombre'] ?></h2></center>
 				<div id="menu">
 					<?php require_once("menu.php") ?>
 				</div>
