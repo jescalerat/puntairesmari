@@ -41,6 +41,12 @@
 		</td>
 	</tr>
 	<tr>
+		<td>
+			&nbsp;
+			<a class="admin" href="#" onclick="llamada_prototype('gestionar_carteles.php','principal');">Insertar Cartel</a>
+		</td>
+	</tr>
+	<tr>
 		<th>
 			Consultas
 		</th>

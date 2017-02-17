@@ -44,6 +44,10 @@
 				if (result != -1){
 					formulario = "contactos";
 				}
+				result = url.indexOf("cartel");
+				if (result != -1){
+					formulario = "carteles";
+				}
 				
 				llamada_prototype(url,'principal', 2, formulario);
 			}

@@ -29,14 +29,14 @@
 	}
 	
 
-	if (isset($_POST['contacto']) && $idEncuentroInsert != "")
+	if (isset($_POST['cartel']) && $idEncuentroInsert != "")
 	{
-		$contacto=$_POST['contacto'];
+		$cartel=$_POST['cartel'];
 		
 		print ("Encuentro: ".$idEncuentroInsert);
-		print ("<br>Contacto: ".$contacto);
+		print ("<br>Cartel: ".$cartel);
   	
-		$query="insert into contactos (IdEncuentro,Contacto) values (".$idEncuentroInsert.",\"".$contacto."\")";
+		$query="insert into carteles (IdEncuentro,Carteles) values (".$idEncuentroInsert.",\"".$cartel."\")";
 		$qresultado=mysqli_query ($link, $query);
 
 		if ($qresultado<>1)
@@ -48,7 +48,7 @@
 		
 		<table border="0" width="100%">
 			<tr>
-				<td><a href="#" onclick="llamada_prototype('gestionar_contactos.php?IdEncuentro=<?= $idEncuentroInsert ?>','principal');">Otro Contacto</a></td>
+				<td><a href="#" onclick="llamada_prototype('gestionar_carteles.php?IdEncuentro=<?= $idEncuentroInsert ?>','principal');">Otro Cartel</a></td>
 				<td><a href="#" onclick="llamada_prototype('gestionar_lugar.php','principal');">Otro lugar</a></td>
 			</tr>
 		</table>
@@ -57,7 +57,7 @@
 	else if (!isset($idencuentro))
 	{
 ?>		
-		<form action="javascript:llamada_prototype('gestionar_contactos.php','principal',2);" method="post" name="contactos" id="contactos">
+		<form action="javascript:llamada_prototype('gestionar_carteles.php','principal',2);" method="post" name="carteles" id="carteles">
 <?php 			
 			$query="select e.idencuentro, concat(e.Dia,\"-\",e.Mes,\"-\",e.Anyo) as dia, m.municipio from encuentros e, municipios m where e.IdMunicipio=m.IdMunicipio order by m.Municipio";
 			$q=mysqli_query ($link, $query);
@@ -79,10 +79,10 @@
 			</select>
 			
 			<p>
-				Contacto: <input tipe="text" id="contacto" name="contacto" size="30" maxlength="100"/>
+				Cartel: <input tipe="text" id="cartel" name="cartel" size="30" maxlength="100"/>
 			</p>
 			<p>
-				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_contactos.php');"/>
+				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_carteles.php');"/>
 			</p>
 		</form>
 <?php 		
@@ -90,13 +90,13 @@
 	else
 	{
 ?>
-		<form action="javascript:llamada_prototype('gestionar_contactos.php','principal',2);" method="post" name="contactos" id="contactos">
+		<form action="javascript:llamada_prototype('gestionar_carteles.php','principal',2);" method="post" name="carteles" id="carteles">
 			<input type="hidden" id="idEncuentro" name="idEncuentro" value="<?= $idencuentro ?>">
 			<p>
-				Contacto: <input tipe="text" id="contacto" name="contacto" size="30" maxlength="100"/>
+				Cartel: <input tipe="text" id="cartel" name="cartel" size="30" maxlength="100"/>
 			</p>
 			<p>
-				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_contactos.php');"/>
+				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_carteles.php');"/>
 			</p>
 		</form>
 <?php 		

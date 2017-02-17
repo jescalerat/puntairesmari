@@ -1,4 +1,8 @@
 User-agent: *
-Disallow: /admin_web
+Disallow: /admin
+Disallow: /conf
+Disallow: /css
+Disallow: /imagenes
 Disallow: /includes
+Disallow: /js
 Disallow: /paginas

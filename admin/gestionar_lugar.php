@@ -46,7 +46,7 @@
 	<table border="0" width="100%">
 		<tr>
 			<td><a href="#" onclick="llamada_prototype('gestionar_lugar.php','principal');">Otro lugar</a></td>
-			<td><a href="#" onclick="llamada_prototype('gestionar_cartel.php?IdEncuentro=<?= $idencuentro ?>&IdMunicipio=<?= $idmunicipio ?>','principal');">Insertar cartel</a></td>
+			<td><a href="#" onclick="llamada_prototype('gestionar_carteles.php?IdEncuentro=<?= $idencuentro ?>','principal');">Insertar cartel</a></td>
 			<td><a href="#" onclick="llamada_prototype('gestionar_contactos.php?IdEncuentro=<?= $idencuentro ?>','principal');">Insertar contactos</a></td>
 		</tr>
 	</table>
