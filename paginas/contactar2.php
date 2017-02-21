@@ -15,8 +15,6 @@
 		}
 	}
 	
-	require_once($ruta."conf/traduccion.php");
-
   	$nombre=$_POST['nombre'];
   	$email=$_POST['email'];
   	$mensaje=$_POST['mensaje'];
@@ -27,6 +25,7 @@
 		require_once($ruta."conf/conexion.php");
 		$link=Conectarse();
 	}
+	require_once($ruta."conf/traduccion.php");
 	require_once($ruta."conf/funciones.php");
 
 	$query="insert into correo (Nombre,Email,Mensaje,IP) values (\"".$nombre."\",\"".$email."\",\"".$mensaje."\",\"".getRealIP()."\")";
@@ -36,16 +35,16 @@
 	//En el campo De aparecerá javi@calendario
     $email2="puntairesmari@gmail.com";
     $asunto="Sugerencias";
-    $cuerpo="Nombre: ".$nombre."\r\n Email: ".$email."\r\n Mensaje: ".$mensaje;
+    $cuerpo="Nombre: ".$nombre."<br> Email: ".$email."<br> Mensaje: ".$mensaje;
 	//mail($email2,$asunto,$cuerpo,"From: Contacta Puntaires Mari");
 	
     //incluimos la clase PHPMailer
-    require_once('../conf/PHPMailer/class.phpmailer.php');
+   /* require_once('../conf/PHPMailer/PHPMailerAutoload.php');
     
     //instancio un objeto de la clase PHPMailer
 	$correo = new PHPMailer();
 	
-	$correo->SMTPDebug = 3;
+	//$correo->SMTPDebug = 1;
 	
 	$correo->IsSMTP();
 	
@@ -61,14 +60,25 @@
 	
 	$correo->Password   = "torres2008";
 	
+	$correo->SMTPOptions = array(
+			'ssl' => array(
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+					'allow_self_signed' => true
+			)
+	);
+	
+	$correo->IsHTML(true);
+	$correo->CharSet = 'UTF-8';
+	
 	//$correo->SetFrom("puntairesmari@gmail.com", "Mi Codigo PHP");
-	$correo->SetFrom($email2, "Sugerencias");
+	$correo->SetFrom($email, $nombre);
 	
 	//$correo->AddReplyTo("puntairesmari@gmail.com","Mi Codigo PHP");
-	$correo->AddReplyTo($email2, "Sugerencias");
+	//$correo->AddReplyTo($email2, "Sugerencias");
 	
 	//$correo->AddAddress("destino@correo.com", "Jorge");
-	$correo->AddAddress($email, $nombre);
+	$correo->AddAddress($email2, "Sugerencias");
 	
 	//$correo->Subject = "Mi primero correo con PHPMailer";
 	$correo->Subject = $asunto;
@@ -78,11 +88,12 @@
 	
 	//$correo->AddAttachment("images/phpmailer.gif");
 	
-	if(!$correo->Send()) {
+	$correo->Send();*/
+	/*if(!$correo->Send()) {
 	  echo "Hubo un error: " . $correo->ErrorInfo;
 	} else {
 	  echo "Mensaje enviado con exito.";
-	}
+	}*/
 
 ?>
     <table border="0" width="100%">
