@@ -48,6 +48,10 @@
 				if (result != -1){
 					formulario = "carteles";
 				}
+				result = url.indexOf("municipios");
+				if (result != -1){
+					formulario = "municipios";
+				}
 				
 				llamada_prototype(url,'principal', 2, formulario);
 			}

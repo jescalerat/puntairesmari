@@ -42,19 +42,17 @@
 ?>
 		<table border="0" width="100%">
 			<tr>
-				<td><a href="index.php">Indice</a></td>
-				<td><a href="gestionar_municipios.php">Otro municipio</a></td>
-				<td><a href="gestionar_lugar.php?IdMunicipio=<?= $proximoid ?>">Insertar encuentro</a></td>
+				<td><a href="#" onclick="llamada_prototype('gestionar_municipios.php','principal');">Otro municipio</a></td>
+				<td><a href="#" onclick="llamada_prototype('gestionar_lugar.php?IdMunicipio=<?= $proximoid ?>','principal');">Insertar encuentro</a></td>
 			</tr>
 		</table>
 <?php 				
-		mysqli_free_result($qresultado);
 		mysqli_free_result($qidmunicipio);
 	}
 	else
 	{
 ?>		
-		<form name="encuentros" id="encuentros" method="post">
+		<form action="javascript:llamada_prototype('gestionar_municipios.php','principal',2);" method="post" name="municipios" id="municipios">
 			<?php generaComunidades(1); ?>
 			<p>
 				<select disabled="disabled" name="op_provincias" id="op_provincias">
@@ -70,7 +68,7 @@
 				Municipio: <input tipe="text" id="municipio" name="municipio" size="30" maxlength="50"/>
 			</p>
 			<p>
-				<input type="submit" name="enviar" id="enviar" value="Guardar"/>
+				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_municipios.php');"/>
 			</p>
 		</form>
 		<p><a href="index.php">Indice</a></p>
