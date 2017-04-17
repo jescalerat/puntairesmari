@@ -8,6 +8,7 @@
 <?php
 	require_once("../conf/funciones.php");
 	require_once("../conf/conexion.php");
+	require_once("../conf/traduccion.php");
 	$link=Conectarse();
 	
 	if (isset($_POST['op_comunidades'])&&isset($_POST['op_provincias'])&&isset($_POST['op_municipios']))
