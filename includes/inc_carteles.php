@@ -26,7 +26,7 @@
 ?>				
 					<tr>
 						<td align="center">
-							<img src="<?= $carteles["Carteles"] ?>" name="btndocumento" border="0" id="btndocumento">
+							<img src="<?= $carteles["Carteles"] ?>" name="btndocumento" border="0" height="1000px" width="800px" id="btndocumento">
 						</td>
 					</tr>
 <?php 				

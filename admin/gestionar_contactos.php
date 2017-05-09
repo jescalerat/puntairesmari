@@ -141,38 +141,46 @@
 			<p>
 				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_contactos.php');"/>
 			</p>
-			
-<?php 			
-				$query="select * from contactos where IdEncuentro = ".$idencuentro;
-				$qcontactos=mysqli_query ($link, $query);
-				$filas=mysqli_num_rows($qcontactos);
-				
-				if ($filas>0)
-				{
-?>			
-					<table border="1" width="100%">
-						<tr>
-							<th align="center"><?= cambiarAcentos(_CONTACTOS) ?></th>
-						</tr>
-<?php 
-						while($contactos=mysqli_fetch_array($qcontactos, MYSQLI_BOTH))
-						{			
-?>
-							<tr>
-								<td><?= $contactos["Contacto"] ?></td>
-							</tr>
-<?php 
-						}			
-?>
-
-					</table>
-<?php 			
-				}
-				
-				mysqli_free_result($qcontactos);
-?>	
 		</form>
 <?php 			
+	}
+
+	$idEncuentroBuscar = 0;
+	if ($idEncuentroInsert != "" || isset($idencuentro)){
+		if ($idEncuentroInsert != ""){
+			$idEncuentroBuscar = $idEncuentroInsert;
+		} else {
+			$idEncuentroBuscar = $idencuentro;
+		}
+	}
+	
+	if ($idEncuentroBuscar != 0){
+		$query="select * from contactos where IdEncuentro = ".$idEncuentroBuscar;
+		$qcontactos=mysqli_query ($link, $query);
+		$filas=mysqli_num_rows($qcontactos);
+		
+		if ($filas>0)
+		{
+?>			
+			<table border="1" width="100%">
+				<tr>
+					<th align="center"><?= cambiarAcentos(_CONTACTOS) ?></th>
+				</tr>
+<?php 
+				while($contactos=mysqli_fetch_array($qcontactos, MYSQLI_BOTH))
+				{			
+?>
+					<tr>
+						<td><?= $contactos["Contacto"] ?></td>
+					</tr>
+<?php 
+				}			
+?>
+			</table>
+<?php 			
+		}
+			
+		mysqli_free_result($qcontactos);
 	}
 ?>	
 

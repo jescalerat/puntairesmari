@@ -141,42 +141,57 @@
 			<p>
 				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_carteles.php');"/>
 			</p>
-			
-<?php 			
-				$query="select * from carteles where IdEncuentro = ".$idencuentro;
-				$qcarteles=mysqli_query ($link, $query);
-				$filas=mysqli_num_rows($qcarteles);
-				
-				if ($filas>0)
-				{
-?>			
-					<table border="1" width="100%">
-						<tr>
-							<th align="center"><?= cambiarAcentos(_CARTELES) ?></th>
-						</tr>
-<?php 
-						while($carteles=mysqli_fetch_array($qcarteles, MYSQLI_BOTH))
-						{			
-?>
-							<tr>
-								<td>
-									<img src="<?= $carteles["Carteles"] ?>" name="btndocumento" border="0" id="btndocumento" height="150px" width="150px">
-								</td>
-							</tr>
-<?php 
-						}			
-?>
-
-					</table>
-<?php 			
-				}
-				
-				mysqli_free_result($qcarteles);
-?>	
 		</form>
 <?php 		
 	}
 ?>
+
+<?php 			
+
+	$idEncuentroBuscar = 0;
+	if ($idEncuentroInsert != "" || isset($idencuentro)){
+		if ($idEncuentroInsert != ""){
+			$idEncuentroBuscar = $idEncuentroInsert;
+		} else {
+			$idEncuentroBuscar = $idencuentro;
+		}
+	}
+
+	if ($idEncuentroBuscar != 0){
+		$query="select * from carteles where IdEncuentro = ".$idEncuentroBuscar;
+		$qcarteles=mysqli_query ($link, $query);
+		$filas=mysqli_num_rows($qcarteles);
+		
+		if ($filas>0)
+		{
+?>			
+			<table border="1" width="100%">
+				<tr>
+					<th align="center"><?= cambiarAcentos(_CARTELES) ?></th>
+				</tr>
+<?php 
+				while($carteles=mysqli_fetch_array($qcarteles, MYSQLI_BOTH))
+				{			
+?>
+					<tr>
+						<td>
+							<img src="<?= $carteles["Carteles"] ?>" name="btndocumento" border="0" id="btndocumento" height="150px" width="150px">
+						</td>
+					</tr>
+<?php 
+				}			
+?>
+			</table>
+<?php 			
+		}
+	
+		mysqli_free_result($qcarteles);
+	}
+?>	
+
+		<p><a href="http://tinypic.com" target="_black">Tinypic</a></p>
+		<p>Email: jet_431@hotmail.com</p>
+		<p>Contraseña: Torres2008</p>
 
 		<input type="hidden" id="provinciasString" name="provinciasString" value="<?= cambiarAcentos(_PROVINCIAS) ?>">
 		<input type="hidden" id="municipiosString" name="municipiosString" value="<?= cambiarAcentos(_MUNICIPIOS) ?>">
