@@ -36,8 +36,13 @@
 		
 		print ("Encuentro: ".$idEncuentroInsert);
 		print ("<br>Cartel: ".$cartel);
+		
+		$query="select idcartel from carteles order by idcartel desc limit 1";
+	    $qIdCartel=mysqli_query ($link, $query);
+		$rowIdCartel=mysqli_fetch_array($qIdCartel, MYSQLI_BOTH);
+		$idcartel = $rowIdCartel["idcartel"] + 1;
   	
-		$query="insert into carteles (IdEncuentro,Carteles) values (".$idEncuentroInsert.",\"".$cartel."\")";
+		$query="insert into carteles (IdCartel,IdEncuentro,Carteles) values (".$idcartel.",".$idEncuentroInsert.",\"".$cartel."\")";
 		$qresultado=mysqli_query ($link, $query);
 
 		if ($qresultado<>1)
@@ -45,6 +50,7 @@
 			$error=1;
 			print ("<p>Query error: ".$query."<br>");
 		}
+		print ("<br>Insert: ".$query.";<br>");
 ?>		
 		
 		<table border="0" width="100%">

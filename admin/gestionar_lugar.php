@@ -32,8 +32,13 @@
 	  	$idcomunidad=$idMunicipio[2];
 	  	$idprovincia=$idMunicipio[1];
 	  	$idmunicipio=$idMunicipio[0];
+		
+		$query="select idencuentro from encuentros order by idencuentro desc limit 1";
+	    $qIdEncuentro=mysqli_query ($link, $query);
+		$rowIdEncuentro=mysqli_fetch_array($qIdEncuentro, MYSQLI_BOTH);
+		$idencuentro = $rowIdEncuentro["idencuentro"] + 1;
 	  	
-	  	$query="insert into encuentros (IdMunicipio,Descripcion,Dia,Mes,Anyo) values (".$idmunicipio.",\"".$descripcion."\",\"".$dia."\",".$mes.",".$anyo.")";
+	  	$query="insert into encuentros (IdEncuentro,IdMunicipio,Descripcion,Dia,Mes,Anyo) values (".$idencuentro.",".$idmunicipio.",\"".$descripcion."\",\"".$dia."\",".$mes.",".$anyo.")";
 	    $qresultado=mysqli_query ($link, $query);
 	
 		if ($qresultado<>1)
@@ -43,6 +48,7 @@
 		}
 			
 		$idencuentro = mysqli_insert_id($link);
+		print ("<br>Insert: ".$query.";<br>");
 ?>		
 	<table border="0" width="100%">
 		<tr>
@@ -103,7 +109,7 @@
 				Mes: <input tipe="text" id="mes" name="mes" size="30" maxlength="50"/>
 			</p>
 			<p>
-				Año: <input tipe="text" id="anyo" name="anyo" value="2017" size="30" maxlength="50"/>
+				Año: <input tipe="text" id="anyo" name="anyo" value="2018" size="30" maxlength="50"/>
 			</p>
 			<p>
 				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_lugar.php');"/>
