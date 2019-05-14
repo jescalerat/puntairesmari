@@ -5,7 +5,7 @@
 		<script type="text/javascript" src="../js/ajax.js"></script>
 	</head>
 	<body>
-		<form action="javascript:llamada_prototype('gestionar_contactos.php','principal',2);" method="post" name="contactos" id="contactos">
+		<form action="javascript:llamada_prototype('duplicar_encuentro.php','principal',2);" method="post" name="dupEncuentros" id="dupEncuentros">
 <?php
 	require_once("../conf/funciones.php");
 	require_once("../conf/conexion.php");
@@ -18,86 +18,61 @@
 	}
 	
 	$idEncuentroInsert = "";
-	if (isset($_POST['op_encuentro']) || isset($_POST['idEncuentro']))
+	$descripcion = "";
+	$dia = "";
+	$mes = "";
+	$anyo = "";
+	if (isset($_GET['IdEncuentro']))
 	{
-		if (isset($_POST['op_encuentro']))
-		{
-			$idEncuentroInsert = $_POST['op_encuentro'];
-		}
-		if (isset($_POST['idEncuentro']))
-		{
-			$idEncuentroInsert = $_POST['idEncuentro'];
-		}
+	    $idEncuentroInsert = $_GET['IdEncuentro'];
+		
+		$query="select * from encuentros where IdEncuentro=".$idEncuentroInsert;
+		$qEncuentro=mysqli_query ($link, $query);
+		$rowEncuentro=mysqli_fetch_array($qEncuentro, MYSQLI_BOTH);
+	
+		$descripcion = $rowEncuentro["Descripcion"];
+		$dia = $rowEncuentro["Dia"];
+		$mes = $rowEncuentro["Mes"];
+		$anyo = $rowEncuentro["Anyo"];
 	}
 
 	$idEncuentroEliminar = $idencuentro ? $idencuentro : $idEncuentroInsert;
 	
-	if (isset($_GET['ideliminar']))
+	if (isset($_POST['idEncuentro']))
 	{
-	    $query="delete from contactos_encuentros where IdContacto=".$_GET['ideliminar']." and IdEncuentro=".$_GET['IdEncuentro'];
-	    mysqli_query($link, $query);
-	    print ("<br>Delete: ".$query.";<br>");
-	}
-	
-	if (isset($_GET['ideliminarContacto']))
-	{
-	    $query="delete from contactos_encuentros where IdContacto=".$_GET['ideliminarContacto']." and IdEncuentro=".$_GET['IdEncuentro'];
-	    mysqli_query($link, $query);
-	    print ("<br>Delete: ".$query.";<br>");
+	    $idEncuentroInsert=$_POST['idEncuentro'];
+	    $idencuentro=$_POST['idEncuentro'];
+	    $descripcion=$_POST['descripcion'];
+	    $dia=$_POST['dia'];
+	    $mes=$_POST['mes'];
+	    $anyo=$_POST['anyo'];
+	    print ("<br>Descripcion: ".$descripcion);
+	    print ("<br>Dia: ".$dia);
+	    print ("<br>Mes: ".$mes);
+	    print ("<br>Año: ".$anyo);
 	    
-	    $query="delete from contactos where IdContacto=".$_GET['ideliminarContacto'];
-	    mysqli_query($link, $query);
-	    print ("<br>Delete: ".$query.";<br>");
-	}
-	
-	
-	require_once("gestionar_contactos_otros.php");
-
-	if ((isset($_POST['contacto']) || isset($_POST['idsContactos'])) && $idEncuentroInsert != "")
-	{
-	    if (isset($_POST['contacto'])  && $_POST['contacto'] != ""){
-    		$contacto=$_POST['contacto'];
-    		
-    		print ("Encuentro: ".$idEncuentroInsert);
-    		print ("<br>Contacto: ".$contacto);
-    		
-    		$query="select idcontacto from contactos order by idcontacto desc limit 1";
-    	    $qIdContacto=mysqli_query ($link, $query);
-    		$rowIdContacto=mysqli_fetch_array($qIdContacto, MYSQLI_BOTH);
-    		$idcontacto = $rowIdContacto["idcontacto"] + 1;
-      	
-    		$query="insert into contactos (IdContacto,Contacto) values (".$idcontacto.",\"".$contacto."\")";
-    		$qresultado=mysqli_query ($link, $query);
-    
-    		if ($qresultado<>1)
-    		{
-    			$error=1;
-    			print ("<p>Query error: ".$query."<br>");
-    		}
-    		print ("<br>Insert: ".$query.";<br>");
-    		
-    		$query="insert into contactos_encuentros (IdContacto,IdEncuentro) values (".$idcontacto.",".$idEncuentroInsert.")";
-    		$qresultado=mysqli_query ($link, $query);
-    		
-    		if ($qresultado<>1)
-    		{
-    		    $error=1;
-    		    print ("<p>Query error: ".$query."<br>");
-    		}
-    		print ("<br>Insert: ".$query.";<br>");
-	    } else {
-	        foreach($_POST['idsContactos'] as $idContacto){
-	            $query="insert into contactos_encuentros (IdContacto,IdEncuentro) values (".$idContacto.",".$idEncuentroInsert.")";
-	            $qresultado=mysqli_query ($link, $query);
-	            
-	            if ($qresultado<>1)
-	            {
-	                $error=1;
-	                print ("<p>Query error: ".$query."<br>");
-	            }
-	            print ("<br>Insert: ".$query.";<br>");
-	        }
+	    $query="select * from encuentros where IdEncuentro=".$_POST['idEncuentro'];
+	    $qIdMunicipio=mysqli_query ($link, $query);
+	    $rowIdMunicipio=mysqli_fetch_array($qIdMunicipio, MYSQLI_BOTH);
+	    $idMunicipio = $rowIdMunicipio["IdMunicipio"];
+	    
+	    $query="select idencuentro from encuentros order by idencuentro desc limit 1";
+	    $qIdEncuentro=mysqli_query ($link, $query);
+	    $rowIdEncuentro=mysqli_fetch_array($qIdEncuentro, MYSQLI_BOTH);
+	    $idencuentro = $rowIdEncuentro["idencuentro"] + 1;
+	    
+	    $query="insert into encuentros (IdEncuentro,IdMunicipio,Descripcion,Dia,Mes,Anyo) values (".$idencuentro.",".$idMunicipio.",\"".$descripcion."\",\"".$dia."\",".$mes.",".$anyo.")";
+	    $qresultado=mysqli_query ($link, $query);
+	    
+	    if ($qresultado<>1)
+	    {
+	        $error=1;
+	        print ("<p>Query error: ".$query."<br>");
 	    }
+	    
+	    $idencuentro = mysqli_insert_id($link);
+	    print ("<br>Insert: ".$query.";<br>");
+
 ?>		
 		
 		<table border="0" width="100%">
@@ -125,7 +100,7 @@
 		</p>
 		
 		<p>
-			<input type="submit" name="enviar" id="enviar" value="Buscar encuentro" onclick="return ejecutarAccion('gestionar_contactos.php');"/>
+			<input type="submit" name="enviar" id="enviar" value="Buscar encuentro" onclick="return ejecutarAccion('duplicar_encuentro.php');"/>
 		</p>
 			
 <?php 
@@ -164,7 +139,7 @@
 						}
 ?>				
 						<tr>
-							<td><a href="javascript:llamada_prototype('gestionar_contactos.php?IdEncuentro=<?= $encuentros["IdEncuentro"] ?>','principal');"><?= cambiarAcentos($desc) ?></a></td>
+							<td><a href="javascript:llamada_prototype('duplicar_encuentro.php?IdEncuentro=<?= $encuentros["IdEncuentro"] ?>','principal');"><?= cambiarAcentos($desc) ?></a></td>
 							<td><?= $dias ?></td>
 						</tr>
 <?php 				
@@ -182,10 +157,19 @@
 ?>
 		<input type="hidden" id="idEncuentro" name="idEncuentro" value="<?= $idencuentro ?>">
 		<p>
-			Contacto: <input tipe="text" id="contacto" name="contacto" size="30" maxlength="100"/>
+			Descripci&oacute;n: <input tipe="text" id="descripcion" name="descripcion" size="30" maxlength="50"  value="<?= $descripcion ?>"/>
 		</p>
 		<p>
-			<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_contactos.php');"/>
+			Dia: <input tipe="text" id="dia" name="dia" size="30" maxlength="50" value="<?= $dia ?>"/>
+		</p>
+		<p>
+			Mes: <input tipe="text" id="mes" name="mes" size="30" maxlength="50" value="<?= $mes ?>"/>
+		</p>
+		<p>
+			Año: <input tipe="text" id="anyo" name="anyo" size="30" maxlength="50" value="<?= $anyo ?>"/>
+		</p>
+		<p>
+			<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('duplicar_encuentro.php');"/>
 		</p>
 <?php 			
 	}
@@ -220,8 +204,8 @@
 ?>
 					<tr>
 						<td><?= $contactos["Contacto"] ?></td>
-						<td><a onclick="llamada_prototype('gestionar_contactos.php?ideliminar=<?= $contactos["IdContacto"] ?>&IdEncuentro=<?= $idEncuentroEliminar ?>','principal');" href="#">Eliminar</a></td>
-						<td><a onclick="llamada_prototype('gestionar_contactos.php?ideliminarContacto=<?= $contactos["IdContacto"] ?>&IdEncuentro=<?= $idEncuentroEliminar ?>','principal');" href="#">Eliminar</a></td>
+						<td><a onclick="llamada_prototype('duplicar_encuentro.php?ideliminar=<?= $contactos["IdContacto"] ?>&IdEncuentro=<?= $idEncuentroEliminar ?>','principal');" href="#">Eliminar</a></td>
+						<td><a onclick="llamada_prototype('duplicar_encuentro.php?ideliminarContacto=<?= $contactos["IdContacto"] ?>&IdEncuentro=<?= $idEncuentroEliminar ?>','principal');" href="#">Eliminar</a></td>
 					</tr>
 <?php 
 				}			

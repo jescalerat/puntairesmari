@@ -47,6 +47,18 @@
 		</td>
 	</tr>
 	<tr>
+		<td>
+			&nbsp;
+			<a class="admin" href="#" onclick="llamada_prototype('modificar_encuentro.php','principal');">Modificar Encuentro</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			&nbsp;
+			<a class="admin" href="#" onclick="llamada_prototype('duplicar_encuentro.php','principal');">Duplicar Encuentro</a>
+		</td>
+	</tr>
+	<tr>
 		<th>
 			Consultas
 		</th>

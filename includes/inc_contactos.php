@@ -1,7 +1,8 @@
 <?php
 	$idencuentro = $_GET["idencuentro"];
 
-	$query="select * from contactos where IdEncuentro = ".$idencuentro;
+	$query="select * from contactos c, contactos_encuentros ce ";
+	$query.="where c.IdContacto=ce.IdContacto and ce.IdEncuentro = ".$idencuentro;
 	$q=mysqli_query ($link, $query);
 	
 	//Obtener el numero de filas devuelto

@@ -51,7 +51,7 @@
 	$ruta = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], '/'));
 	$_SESSION["ruta"] = $ruta.="/";
 	//Servidor local
-	$_SESSION["rutaservidor"] = "http://".$_SERVER["SERVER_NAME"].":8081/workspace/puntairesmari/";
+	$_SESSION["rutaservidor"] = "http://".$_SERVER["SERVER_NAME"]."/php7/puntairesmari/";
 	//Servidor internet
 	//$_SESSION["rutaservidor"] = "http://".$_SERVER["SERVER_NAME"]."/";
 	

@@ -13,7 +13,6 @@
 	
 	if (isset($_POST['op_comunidades'])&&isset($_POST['op_provincias'])&&isset($_POST['op_municipios']))
   	{
-  		print("Entra");
 	  	$comunidad=$_POST['op_comunidades'];
 	  	$provincia=$_POST['op_provincias'];
 	  	$municipio=$_POST['op_municipios'];

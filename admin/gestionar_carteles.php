@@ -28,7 +28,15 @@
 			$idEncuentroInsert = $_POST['idEncuentro'];
 		}
 	}
+
+	$idEncuentroEliminar = $idencuentro ? $idencuentro : $idEncuentroInsert;
 	
+	if (isset($_GET['ideliminar']))
+	{
+	    $query="delete from carteles where IdCartel=".$_GET['ideliminar'];
+	    mysqli_query($link, $query);
+	    print ("<br>Delete: ".$query.";<br>");
+	}
 
 	if (isset($_POST['cartel']) && $idEncuentroInsert != "")
 	{
@@ -174,6 +182,7 @@
 			<table border="1" width="100%">
 				<tr>
 					<th align="center"><?= cambiarAcentos(_CARTELES) ?></th>
+					<th align="center" width="10%">Eliminar</th>
 				</tr>
 <?php 
 				while($carteles=mysqli_fetch_array($qcarteles, MYSQLI_BOTH))
@@ -183,6 +192,7 @@
 						<td>
 							<img src="<?= $carteles["Carteles"] ?>" name="btndocumento" border="0" id="btndocumento" height="150px" width="150px">
 						</td>
+						<td><a onclick="llamada_prototype('gestionar_carteles.php?ideliminar=<?= $carteles["IdCartel"] ?>&IdEncuentro=<?= $idEncuentroEliminar ?>','principal');" href="#">Eliminar</a></td>
 					</tr>
 <?php 
 				}			

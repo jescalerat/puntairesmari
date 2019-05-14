@@ -52,6 +52,14 @@
 				if (result != -1){
 					formulario = "municipios";
 				}
+				result = url.indexOf("modificar");
+				if (result != -1){
+					formulario = "encuentros";
+				}
+				result = url.indexOf("duplicar");
+				if (result != -1){
+					formulario = "dupEncuentros";
+				}
 				
 				llamada_prototype(url,'principal', 2, formulario);
 			}
