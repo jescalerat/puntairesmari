@@ -3,8 +3,8 @@ function Conectarse()
 {
 	//Conexión localhost
 	$enlace = mysqli_connect("localhost","root","", "puntairesmari");
-	//Conexión web 1and1
-	//$enlace = mysqli_connect("db393887321.db.1and1.com","dbo393887321","Torres2008", "db393887321");
+	//Conexión web webcindario
+	//$enlace = mysqli_connect("mysql.webcindario.com","puntairesmari","Torres2008", "puntairesmari");
 
 	if (!$enlace) {
 		echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -13,7 +13,7 @@ function Conectarse()
 		exit;
 	}
 	
-	mysqli_query ($enlace, "SET NAMES 'utf8'");
+	//mysqli_query ($enlace, "SET NAMES 'utf8'");
 	return $enlace;
 }
 ?>

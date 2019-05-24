@@ -16,7 +16,7 @@
 		<meta name="AUTHOR" content="jet"/>
 		<meta http-equiv="EXPIRES" content="Mon, 31 Dec 2054 00:00:01 PST"/>
 		<meta http-equiv="CHARSET" content="UTF-8"/>
-		<meta http-equiv="content-LANGUAGE" content="Espaï¿½ol"/>
+		<meta http-equiv="content-LANGUAGE" content="Español"/>
 		<meta http-equiv="VW96.OBJECT TYPE" content="Pag. Personal"/>
 		<meta name="RATING" content="General"/>
 		<meta name="REVISIT-AFTER" content="7 days"/>
@@ -53,7 +53,7 @@
 	//Servidor local
 	$_SESSION["rutaservidor"] = "http://".$_SERVER["SERVER_NAME"]."/php7/puntairesmari/";
 	//Servidor internet
-	//$_SESSION["rutaservidor"] = "http://".$_SERVER["SERVER_NAME"]."/";
+	//$_SESSION["rutaservidor"] = "https://".$_SERVER["SERVER_NAME"]."/";
 	
 	if (isset($_SESSION["pagina"]))
 	{
