@@ -99,7 +99,7 @@
 			}
 ?>			
 			<p>
-				Descripci&oacute;n: <input tipe="text" id="descripcion" name="descripcion" size="30" maxlength="50"/>
+				Descripci&oacute;n: <input tipe="text" id="descripcion" name="descripcion" size="30" maxlength="100"/>
 			</p>
 			<p>
 				Dia: <input tipe="text" id="dia" name="dia" size="30" maxlength="50"/>
@@ -108,7 +108,7 @@
 				Mes: <input tipe="text" id="mes" name="mes" size="30" maxlength="50"/>
 			</p>
 			<p>
-				Año: <input tipe="text" id="anyo" name="anyo" value="2017" size="30" maxlength="50"/>
+				An&ntilde;o: <input tipe="text" id="anyo" name="anyo" value="2019" size="30" maxlength="50"/>
 			</p>
 			<p>
 				<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('gestionar_lugar.php');"/>

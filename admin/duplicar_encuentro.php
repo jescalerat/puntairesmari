@@ -77,8 +77,8 @@
 		
 		<table border="0" width="100%">
 			<tr>
-				<td><a href="#" onclick="llamada_prototype('gestionar_contactos.php?IdEncuentro=<?= $idEncuentroInsert ?>','principal');">Otro Contacto</a></td>
-				<td><a href="#" onclick="llamada_prototype('gestionar_carteles.php?IdEncuentro=<?= $idEncuentroInsert ?>','principal');">Insertar cartel</a></td>
+				<td><a href="#" onclick="llamada_prototype('gestionar_contactos.php?IdEncuentro=<?= $idencuentro ?>','principal');">Insertar Contacto</a></td>
+				<td><a href="#" onclick="llamada_prototype('gestionar_carteles.php?IdEncuentro=<?= $idencuentro ?>','principal');">Insertar cartel</a></td>
 				<td><a href="#" onclick="llamada_prototype('gestionar_lugar.php','principal');">Otro lugar</a></td>
 			</tr>
 		</table>
@@ -157,7 +157,7 @@
 ?>
 		<input type="hidden" id="idEncuentro" name="idEncuentro" value="<?= $idencuentro ?>">
 		<p>
-			Descripci&oacute;n: <input tipe="text" id="descripcion" name="descripcion" size="30" maxlength="50"  value="<?= $descripcion ?>"/>
+			Descripci&oacute;n: <input tipe="text" id="descripcion" name="descripcion" size="30" maxlength="100"  value="<?= $descripcion ?>"/>
 		</p>
 		<p>
 			Dia: <input tipe="text" id="dia" name="dia" size="30" maxlength="50" value="<?= $dia ?>"/>
@@ -166,58 +166,14 @@
 			Mes: <input tipe="text" id="mes" name="mes" size="30" maxlength="50" value="<?= $mes ?>"/>
 		</p>
 		<p>
-			Año: <input tipe="text" id="anyo" name="anyo" size="30" maxlength="50" value="<?= $anyo ?>"/>
+			A&ntilde;yo: <input tipe="text" id="anyo" name="anyo" size="30" maxlength="50" value="<?= $anyo ?>"/>
 		</p>
 		<p>
 			<input type="submit" name="enviar" id="enviar" value="Guardar" onclick="return ejecutarAccion('duplicar_encuentro.php');"/>
 		</p>
 <?php 			
 	}
-
-	$idEncuentroBuscar = 0;
-	if ($idEncuentroInsert != "" || isset($idencuentro)){
-		if ($idEncuentroInsert != ""){
-			$idEncuentroBuscar = $idEncuentroInsert;
-		} else {
-			$idEncuentroBuscar = $idencuentro;
-		}
-	}
-	
-	if ($idEncuentroBuscar != 0){
-		$query="select c.Contacto, c.IdContacto from contactos c, contactos_encuentros ce ";
-		$query.="where c.IdContacto=ce.IdContacto and ce.IdEncuentro = ".$idEncuentroBuscar;
-		$qcontactos=mysqli_query ($link, $query);
-		$filas=mysqli_num_rows($qcontactos);
-		
-		if ($filas>0)
-		{
-?>			
-			<table border="1" width="100%">
-				<tr>
-					<th align="center"><?= cambiarAcentos(_CONTACTOS) ?></th>
-					<th align="center" width="10%">Eliminar</th>
-					<th align="center" width="10%">Eliminar Contacto</th>
-				</tr>
-<?php 
-				while($contactos=mysqli_fetch_array($qcontactos, MYSQLI_BOTH))
-				{			
 ?>
-					<tr>
-						<td><?= $contactos["Contacto"] ?></td>
-						<td><a onclick="llamada_prototype('duplicar_encuentro.php?ideliminar=<?= $contactos["IdContacto"] ?>&IdEncuentro=<?= $idEncuentroEliminar ?>','principal');" href="#">Eliminar</a></td>
-						<td><a onclick="llamada_prototype('duplicar_encuentro.php?ideliminarContacto=<?= $contactos["IdContacto"] ?>&IdEncuentro=<?= $idEncuentroEliminar ?>','principal');" href="#">Eliminar</a></td>
-					</tr>
-<?php 
-				}			
-?>
-			</table>
-<?php 			
-		}
-			
-		mysqli_free_result($qcontactos);
-	}
-?>	
-
     		<input type="hidden" id="provinciasString" name="provinciasString" value="<?= cambiarAcentos(_PROVINCIAS) ?>">
     		<input type="hidden" id="municipiosString" name="municipiosString" value="<?= cambiarAcentos(_MUNICIPIOS) ?>">
 
