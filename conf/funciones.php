@@ -1,4 +1,27 @@
 <?php
+function idiomaPagina()
+{
+    //Comprobar idioma del navegador cliente
+    if ($_SERVER['HTTP_ACCEPT_LANGUAGE'] != ''){
+        // Miramos que idiomas ha definido:
+        $idiomas = explode(",", $_SERVER['HTTP_ACCEPT_LANGUAGE']); # Convertimos HTTP_ACCEPT_LANGUAGE en array
+        /* Recorremos el array hasta que encontramos un idioma del visitante que coincida con los idiomas en que está disponible nuestra web */
+        if (substr($idiomas[0], 0, 2) == "es"){$idioma = 1;}
+        else if (substr($idiomas[0], 0, 2) == "en"){$idioma = 2;}
+        else if (substr($idiomas[0], 0, 2) == "ca"){$idioma = 3;}
+        //else if (substr($idiomas[0], 0, 2) == "eu"){$idioma = 3;}
+        //else if (substr($idiomas[0], 0, 2) == "gl"){$idioma = 4;}
+        else {$idioma=1;}
+    }
+    
+    if (!isset($_SESSION["idiomapagina"]))
+    {
+        $_SESSION["idiomapagina"]=$idioma;
+    }
+    
+    return $idioma;    
+}
+
 //Devuelve la direcci�n IP real del cliente 
 function getRealIP()
 {
@@ -229,7 +252,9 @@ function superindice($jornada)
 
 function fecha($dia,$mes,$any)
 {
-	if ($_SESSION['idiomapagina']==1)
+    idiomaPagina();
+ 
+    if ($_SESSION['idiomapagina']==1)
 	{
 		$fechadevuelta=$dia." de ".mesAny($mes)." del ".$any;
 	}
@@ -304,359 +329,332 @@ function cambiarAcentos($cadena) {
 	for ($x=0;$x<$long;$x++)
 	{
 //Acento agudo
-		if(strcmp($cadena[$x],"á")==0)
+		if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&aacute;";
 		}
-		else if(strcmp($cadena[$x],"Á")==0)
+		else if(strcmp($cadena[$x],"��")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Aacute;";
 		}
-		else if(strcmp($cadena[$x],"é")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&eacute;";
 		}
-		else if(strcmp($cadena[$x],"É")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Eacute;";
 		}
-		else if(strcmp($cadena[$x],"í")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&iacute;";
 		}
-		else if(strcmp($cadena[$x],"Í")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Iacute;";
 		}
-		else if(strcmp($cadena[$x],"ó")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&oacute;";
 		}
-		else if(strcmp($cadena[$x],"Ó")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Oacute;";
 		}
-		else if(strcmp($cadena[$x],"ú")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&uacute;";
 		}
-		else if(strcmp($cadena[$x],"Ú")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Uacute;";
 		}
 //Dieresis
-		else if(strcmp($cadena[$x],"ä")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&auml;";
 		}
-		else if(strcmp($cadena[$x],"Ä")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Auml;";
 		}
-		else if(strcmp($cadena[$x],"ë")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&euml;";
 		}
-		else if(strcmp($cadena[$x],"Ë")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Euml;";
 		}
-		else if(strcmp($cadena[$x],"ï")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&iuml;";
 		}
-		else if(strcmp($cadena[$x],"Ï")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Iuml;";
 		}
-		else if(strcmp($cadena[$x],"ö")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&ouml;";
 		}
-		else if(strcmp($cadena[$x],"Ö")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Ouml;";
 		}
-		else if(strcmp($cadena[$x],"ü")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&uuml;";
 		}
-		else if(strcmp($cadena[$x],"Ü")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Uuml;";
 		}
 //Acento grave
-		else if(strcmp($cadena[$x],"à")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&agrave;";
 		}
-		else if(strcmp($cadena[$x],"À")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Agrave;";
 		}
-		else if(strcmp($cadena[$x],"è")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&egrave;";
 		}
-		else if(strcmp($cadena[$x],"È")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Egrave;";
 		}
-		else if(strcmp($cadena[$x],"ì")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&igrave;";
 		}
-		else if(strcmp($cadena[$x],"Ì")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Igrave;";
 		}
-		else if(strcmp($cadena[$x],"ò")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&ograve;";
 		}
-		else if(strcmp($cadena[$x],"Ò")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Ograve;";
 		}
-		else if(strcmp($cadena[$x],"ù")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&ugrave;";
 		}
-		else if(strcmp($cadena[$x],"Ù")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
 			$devuelveCadena=$devuelveCadena."&Ugrave;";
 		}
-//Acento circunflejo
-		else if(strcmp($cadena[$x],"â")==0)
+		//Acento circunflejo
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&acirc;";
+		    $devuelveCadena=$devuelveCadena."&acirc;";
 		}
-		else if(strcmp($cadena[$x],"Â")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Acirc;";
+		    $devuelveCadena=$devuelveCadena."&Acirc;";
 		}
-		else if(strcmp($cadena[$x],"ê")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ecirc;";
+		    $devuelveCadena=$devuelveCadena."&ecirc;";
 		}
-		else if(strcmp($cadena[$x],"Ê")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Ecirc;";
+		    $devuelveCadena=$devuelveCadena."&Ecirc;";
 		}
-		else if(strcmp($cadena[$x],"î")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&icirc;";
+		    $devuelveCadena=$devuelveCadena."&icirc;";
 		}
-		else if(strcmp($cadena[$x],"Î")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Icirc;";
+		    $devuelveCadena=$devuelveCadena."&Icirc;";
 		}
-		else if(strcmp($cadena[$x],"ô")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ocirc;";
+		    $devuelveCadena=$devuelveCadena."&ocirc;";
 		}
-		else if(strcmp($cadena[$x],"Ô")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Ocirc;";
+		    $devuelveCadena=$devuelveCadena."&Ocirc;";
 		}
-		else if(strcmp($cadena[$x],"û")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ucirc;";
+		    $devuelveCadena=$devuelveCadena."&ucirc;";
 		}
-		else if(strcmp($cadena[$x],"Û")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Ucirc;";
+		    $devuelveCadena=$devuelveCadena."&Ucirc;";
 		}
-//Letras especiales
-		else if(strcmp($cadena[$x],"ã")==0)
+		//Letras especiales
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&atilde;";
+		    $devuelveCadena=$devuelveCadena."&atilde;";
 		}
-		else if(strcmp($cadena[$x],"Ã")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Atilde;";
+		    $devuelveCadena=$devuelveCadena."&Atilde;";
 		}
-		else if(strcmp($cadena[$x],"æ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&aelig;";
+		    $devuelveCadena=$devuelveCadena."&aelig;";
 		}
-		else if(strcmp($cadena[$x],"Æ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&AElig;";
+		    $devuelveCadena=$devuelveCadena."&AElig;";
 		}
-		else if(strcmp($cadena[$x],"ç")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ccedil;";
+		    $devuelveCadena=$devuelveCadena."&ccedil;";
 		}
-		else if(strcmp($cadena[$x],"Ç")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ccedil;";
+		    $devuelveCadena=$devuelveCadena."&Ccedil;";
 		}
-		else if(strcmp($cadena[$x],"ñ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ntilde;";
+		    $devuelveCadena=$devuelveCadena."&ntilde;";
 		}
-		else if(strcmp($cadena[$x],"Ñ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Ntilde;";
+		    $devuelveCadena=$devuelveCadena."&Ntilde;";
 		}
-		else if(strcmp($cadena[$x],"õ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&otilde;";
+		    $devuelveCadena=$devuelveCadena."&otilde;";
 		}
-		else if(strcmp($cadena[$x],"Õ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Otilde;";
+		    $devuelveCadena=$devuelveCadena."&Otilde;";
 		}
-		else if(strcmp($cadena[$x],"ø")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&oslash;";
+		    $devuelveCadena=$devuelveCadena."&oslash;";
 		}
-		else if(strcmp($cadena[$x],"Ø")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Oslash;";
+		    $devuelveCadena=$devuelveCadena."&Oslash;";
 		}
-		else if(strcmp($cadena[$x],"ß")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&szlig;";
+		    $devuelveCadena=$devuelveCadena."&szlig;";
 		}
-		else if(strcmp($cadena[$x],"ÿ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&yuml;";
+		    $devuelveCadena=$devuelveCadena."&yuml;";
 		}
-		else if(strcmp($cadena[$x],"Ÿ")==0)
+		else if(strcmp($cadena[$x],"�Y")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Yuml;";
+		    $devuelveCadena=$devuelveCadena."&Yuml;";
 		}
-		else if(strcmp($cadena[$x],"ý")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&yacute;";
+		    $devuelveCadena=$devuelveCadena."&yacute;";
 		}
-		else if(strcmp($cadena[$x],"Ý")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Yacute;";
+		    $devuelveCadena=$devuelveCadena."&Yacute;";
 		}
-		else if(strcmp($cadena[$x],"þ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&thorn;";
+		    $devuelveCadena=$devuelveCadena."&thorn;";
 		}
-		else if(strcmp($cadena[$x],"Þ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&THORN;";
+		    $devuelveCadena=$devuelveCadena."&THORN;";
 		}
-//Otros signos
-		else if(strcmp($cadena[$x],"¢")==0)
+		//Otros signos
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&cent;";
+		    $devuelveCadena=$devuelveCadena."&cent;";
 		}
-		else if(strcmp($cadena[$x],"£")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&pound;";
+		    $devuelveCadena=$devuelveCadena."&pound;";
 		}
-		else if(strcmp($cadena[$x],"¤")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&curren;";
+		    $devuelveCadena=$devuelveCadena."&curren;";
 		}
-		else if(strcmp($cadena[$x],"¥")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&yen;";
+		    $devuelveCadena=$devuelveCadena."&copy;";
 		}
-		else if(strcmp($cadena[$x],"©")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&copy;";
+		    $devuelveCadena=$devuelveCadena."&reg;";
 		}
-		else if(strcmp($cadena[$x],"®")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&reg;";
+		    $devuelveCadena=$devuelveCadena."&ordm;";
 		}
-		else if(strcmp($cadena[$x],"º")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ordm;";
+		    $devuelveCadena=$devuelveCadena."&ordf;";
 		}
-		else if(strcmp($cadena[$x],"ª")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&ordf;";
+		    $devuelveCadena=$devuelveCadena."&micro;";
 		}
-		else if(strcmp($cadena[$x],"µ")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&micro;";
+		    $devuelveCadena=$devuelveCadena."&aring;";
 		}
-		else if(strcmp($cadena[$x],"å")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&aring;";
+		    $devuelveCadena=$devuelveCadena."&Aring;";
 		}
-		else if(strcmp($cadena[$x],"Å")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&Aring;";
+		    $devuelveCadena=$devuelveCadena."&deg;";
 		}
-		else if(strcmp($cadena[$x],"°")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&deg;";
+		    $devuelveCadena=$devuelveCadena."&middot;";
 		}
-		else if(strcmp($cadena[$x],"·")==0)
+		
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&middot;";
+		    $devuelveCadena=$devuelveCadena."&uml;";
 		}
-		else if(strcmp($cadena[$x],"€")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&euro;";
+		    $devuelveCadena=$devuelveCadena."&acute;";
 		}
-		else if(strcmp($cadena[$x],"¨")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&uml;";
+		    $devuelveCadena=$devuelveCadena."&cedil;";
 		}
-		else if(strcmp($cadena[$x],"´")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&acute;";
+		    $devuelveCadena=$devuelveCadena."&ETH;";
 		}
-		else if(strcmp($cadena[$x],"¸")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&cedil;";
+		    $devuelveCadena=$devuelveCadena."&eth;";
 		}
-		else if(strcmp($cadena[$x],"Ð")==0)
-		{
-			$devuelveCadena=$devuelveCadena."&ETH;";
-		}
-		else if(strcmp($cadena[$x],"ð")==0)
-		{
-			$devuelveCadena=$devuelveCadena."&eth;";
-		}
-		else if(strcmp($cadena[$x],"ƒ")==0)
-		{
-			$devuelveCadena=$devuelveCadena."&fnof;";
-		}
-		else if(strcmp($cadena[$x],"Š")==0)
-		{
-			$devuelveCadena=$devuelveCadena."&Scaron;";
-		}
-		else if(strcmp($cadena[$x],"š")==0)
-		{
-			$devuelveCadena=$devuelveCadena."&scaron;";
-		}
-		else if(strcmp($cadena[$x],"ž")==0)
-		{
-			$devuelveCadena=$devuelveCadena."&#382;";
-		}
-		else if(strcmp($cadena[$x],"Ž")==0)
-		{
-			$devuelveCadena=$devuelveCadena."&#381;";
-		}
-//Signos especiales
+		//Signos especiales
 		else if(strcmp($cadena[$x],"...")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&hellip;";
+		    $devuelveCadena=$devuelveCadena."&hellip;";
 		}
-		else if(strcmp($cadena[$x],"¡")==0)
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&iexcl;";
-		}		
-		else if(strcmp($cadena[$x],"¿")==0)
+		    $devuelveCadena=$devuelveCadena."&iexcl;";
+		}
+		else if(strcmp($cadena[$x],"�")==0)
 		{
-			$devuelveCadena=$devuelveCadena."&iquest;";
-		}		
+		    $devuelveCadena=$devuelveCadena."&iquest;";
+		}
 		else
 		{
-			$devuelveCadena=$devuelveCadena.$cadena[$x];
+		    $devuelveCadena=$devuelveCadena.$cadena[$x];
 		}
 	}
 	return $devuelveCadena;
@@ -703,5 +701,17 @@ function gestionarFotos($foto)
 		$fotoVuelta=constant($foto);
 	}
 	return $fotoVuelta;
+}
+
+function devolverFechaBBDD($fecha)
+{
+    $fechacompleta=explode("-",$fecha);
+    $dia=$fechacompleta[2];
+    $fechacompleta=explode("-",$fecha);
+    $mes=mesAny($fechacompleta[1]);
+    $fechacompleta=explode("-",$fecha);
+    $any=$fechacompleta[0];
+    $fechaTraducida=$dia."-".$mes."-".$any;
+    return $fechaTraducida;
 }
 ?>

@@ -1,35 +1,44 @@
 <?php
-	session_start();
+    require_once("../conf/traduccion.php");
+    require_once("../conf/conexion.php");
+    require_once("../conf/funciones.php");
+    $link=Conectarse();
 ?>
-<body onload="login.usuario.focus();">
-<?
-  	$ruta = substr($_SERVER['SCRIPT_FILENAME'], 0, strrpos($_SERVER['SCRIPT_FILENAME'], '/'));
-  	$ruta2 = substr($ruta, 0, strrpos($ruta, '/'));
-	$_SESSION["ruta"] = $ruta2.="/";
-?>
-	<form name="login" method="post" action="comprobar.php">
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<h1><center>ADMINISTRACI&Oacute;N USUARIOS</center></h1>
-		<table border="0" class="index" width="20%" align="center">
-			<tr>
-				<td width="11%" valign="top" align="center">
-					<img src="imagenes/hospitalense.gif"/>
-				</td>
-			</tr>
-			<tr>
-				<td width="11%" valign="top" align="center">
-					<fieldset> <!-- Etiqueta para mostrar un recuadro dentro del cual están los input box del Usuario y la Contraseña -->
-						Usuario:
-						<br>
-						<input type="text" name="usuario" size="15" maxlength="10"/>
-						<br>
-						Contrase&ntilde;a:
-						<br>
-						<input type="password" name="password" size="15" maxlength="15"/>
-					</fieldset>
-					<center><button type="submit" name="boton_index">Entrar</button></center>
-				</td>
-			</tr>
-		</table>
-	</form> <!-- Final del formulario de introducir Usuario y password -->
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"  media="screen,projection"/>
+	</head>
+	<body>
+    	<form name="login" method="post" action="comprobar.php">
+    		<fieldset class="form-group">
+    			<label class="col control-label" for="usuario">
+            		Usuario
+            	</label>
+            	<div class="col-sm-10">
+                	<input class="form-control" type="text" name="usuario" id="usuario" required="required" autofocus>
+                </div>
+                
+                <label class="col control-label" for="password">
+            		Contrase&ntilde;a
+            	</label>
+            	<div class="col-sm-10">
+                	<input class="form-control" type="password" name="password" id="password" required="required">
+                </div>
+    		</fieldset>
+    		
+    		<input type="hidden" name="abrirpagina" id="abrirpagina" value="<?= $_GET["abrirpagina"] ?>">
+    		
+    		<div class="form-group">
+                <div class="col">
+                    <p class="text-center"><button type="submit" class="btn btn-default">Enviar</button></p>
+                </div>
+            </div>
+    	</form>
+<?php 
+        if (isset($_GET["error"])){
+            $mensaje = "<p class=\"text-center text-danger\">La contraseña es incorrecta</p>";
+            print(cambiarAcentos($mensaje));
+        }
+?>    	
+	</body>
+</html>
